@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from core import views as burito_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", burito_view.burito, name="burito")
 ]
