@@ -1,6 +1,36 @@
-<h1>Base html</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-{% block blockname %}
-    
-{% endblock blockname %}
-    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortibank - {% block title %} {% endblock title %} </title>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li> <a href="">Cuenta</a></li>
+            <li> <a href="">Inicio</a></li>
+            <li> <a href="">Deposito</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}
+
+    {% endblock content %}
+
+    <footer>
+        <nav>
+            <ul>
+                <li> <a href="">Contacto</a></li>
+                <li> <a href="">Sobre nosotros</a></li>
+                <li> <a href="">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+
+</html>
