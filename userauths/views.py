@@ -53,3 +53,8 @@ def LoginView(request):
             messages.warning(request, "No existe el usuario")
             
     return render(request, "userauths/sign-in.html")
+
+def LogoutView(request):
+    logout(request)
+    messages.success(request, "Has sido desconectado.")
+    return redirect("userauths:sign-in")
