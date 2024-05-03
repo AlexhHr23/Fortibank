@@ -1,41 +1,46 @@
 
-<section class="login-reg">
-    <div class="overlay pt-120">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-xl-6 order-xl-0 order-1">
-                    <div class="sec-img d-rtl">
-                        <img src="{% static 'assets/images/login-reg-bg.png' %}" class="max-un" alt="image">
-                    </div>
-                </div>
-                <div class="col-xl-5">
-                    <div class="section-text text-center">
-                        <h5 class="sub-title">Account</h5>
-                        <h2 class="title">Welcome to Paylio</h2>
-                        <p class="dont-acc">Already have an account? <a href="">Login</a></p>
-                    </div>
-                    <form method="POST">
-                        <!-- {% csrf_token %} -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="single-input">
-                                    <input type="text" class="form-control" placeholder="Username">
-                                </div>
-                                <div class="single-input">
-                                    <input type="email" class="form-control" placeholder="Email Address">
-                                </div>
-                                <div class="single-input">
-                                    <input type="password" class="form-control" placeholder="Enter Password">
-                                </div>
-                                <div class="single-input">
-                                    <input type="password" class="form-control" placeholder="Confirm Password">
-                                </div>
-                                <button class="cmn-btn w-100" type="submit">Sign Up</button>
-                            </div>
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Login Reg start -->
+    <section class="login-reg">
+        <div class="overlay pt-120">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-6 order-xl-0 order-1">
+                        <div class="sec-img d-rtl">
+                            <img src="{% static 'assets/images/login-reg-bg.png' %}" class="max-un" alt="image">
                         </div>
-                    </form>
+                    </div>
+                    <div class="col-xl-5">
+                        <div class="section-text text-center">
+                            <h5 class="sub-title">Cuenta</h5>
+                            <h2 class="title">Inicia sesión para continuar</h2>
+                        </div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="single-input">
+                                        <label for="logemail">Usuario</label>
+                                        <input type="text" id="logemail" placeholder="Usuario">
+                                    </div>
+                                    <div class="single-input">
+                                        <label for="logemail">Contraseña</label>
+                                        <input type="text" id="logemail" placeholder="Contraseña">
+                                    </div>
+                                    <button class="cmn-btn w-100">Ingresar</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="forgot-pass mt-30 text-center">
+                            <a href="javascript:void(0)">¿Olvidaste tu contraseña?</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <!-- Login Reg end --> 
+{% endblock content %}
+    
