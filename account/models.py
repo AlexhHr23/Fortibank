@@ -44,6 +44,8 @@ class Account(models.Model):
     pin_number = ShortUUIDField(unique=True, length=4, max_length=7, alphabet="1234567890") # 2743
     red_code = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefgh1234567890") # 2743unique=TRUE,
     account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="in-active")
+    #identity_type = models.CharField(choices=IDENTITY_TYPE, max_length=140)
+    #identity_image = models.ImageField(upload_to="kyc", null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     kyc_submitted = models.BooleanField(default=False)
     kyc_confirmed = models.BooleanField(default=False)
