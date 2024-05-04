@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from shortuuid.django_fields import ShortUUIDField
 from userauths.models import User
+from django.db.models.signals import post_save
 
 ACCOUNT_STATUS = (
     ("active", "Active"),
@@ -9,11 +10,11 @@ ACCOUNT_STATUS = (
     ("in-active", "In-active")
 )
 
-MARITAL_STATUS = (
-    ("married", "Married"),
-    ("single", "Single"),
-    ("other", "Other")
-)
+# MARITAL_STATUS = (
+#     ("married", "Married"),
+#     ("single", "Single"),
+#     ("other", "Other")
+# )
 
 GENDER = (
     ("male", "Male"),
@@ -22,11 +23,11 @@ GENDER = (
 )
 
 
-IDENTITY_TYPE = (
-    ("national_id_card", "National ID Card"),
-    ("drivers_licence", "Drives Licence"),
-    ("international_passport", "International Passport")
-)
+# IDENTITY_TYPE = (
+#     ("national_id_card", "National ID Card"),
+#     ("drivers_licence", "Drives Licence"),
+#     ("international_passport", "International Passport")
+# )
 
 
 def user_directory_path(instance, filename):
@@ -53,4 +54,33 @@ class Account(models.Model):
         
     def __str__(self):
         return f"self.user"
-      
+    
+class KYC(models.Model):
+    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=1000)
+    image = models.ImageField(upload_to="kyc", default="default.jpg")
+    #nationality = models.CharField(max_length=100)
+    #marrital_status = models.CharField(choices=MARITIAL_STATUS, max_length=40)
+    gender = models.CharField(choices=GENDER, max_length=40)
+    date_of_birth = models.DateTimeField(auto_now_add=False)
+    signature = models.ImageField(upload_to="kyc")
+    
+    #Contact Detail
+    mobile = models.CharField(max_length=1000)
+    #fax = models.CharField(max_length=1000)
+    date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.user}"
+    
+    
+def create_account(sender, instance, created, **kwargs):
+    if created:
+        Account.objects.create(user=instance)
+
+def save_account(sender, instance, **kwargs):
+    instance.account.save()
+    
+post_save.connect(create_account, sender=User)
+post_save.connect(save_account, sender=User)
