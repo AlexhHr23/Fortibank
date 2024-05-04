@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     
     # Custom apps
     'core',
-    'userauths'
+    'userauths',
+    'account'
 ]
 
 MIDDLEWARE = [
