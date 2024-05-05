@@ -40,7 +40,7 @@ class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     account_balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00) # 123 345 56 567
     account_number = ShortUUIDField(unique=True, length=10, max_length=25, prefix="217", alphabet="1234567890") #12345567678789
-    accout_id = ShortUUIDField(unique=True, length=7, max_length=25, prefix="DEX", alphabet="1234567890") #12345567678789
+    account_id = ShortUUIDField(unique=True, length=7, max_length=25, prefix="DEX", alphabet="1234567890") #12345567678789
     pin_number = ShortUUIDField(unique=True, length=4, max_length=7, alphabet="1234567890") # 2743
     red_code = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefgh1234567890") # 2743unique=TRUE,
     account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="in-active")
@@ -55,11 +55,12 @@ class Account(models.Model):
         ordering = ['-date']
         
     def __str__(self):
-        return f"self.user"
+        return f"{self.user}"
     
 class KYC(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    account = models.OneToOneField(Account, on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=1000)
     image = models.ImageField(upload_to="kyc", default="default.jpg")
     #nationality = models.CharField(max_length=100)
@@ -73,8 +74,10 @@ class KYC(models.Model):
     #fax = models.CharField(max_length=1000)
     date = models.DateTimeField(auto_now_add=True)
     
+    
     def __str__(self):
         return f"{self.user}"
+    
     
     
 def create_account(sender, instance, created, **kwargs):

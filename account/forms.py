@@ -10,10 +10,9 @@ class KYCForm(forms.ModelForm):
     image = ImageField(widget=FileInput)
     
     class Meta: 
-        models = KYC
-        # add fields
-        fields = ['full_name','image','gender','date_of_birth','signature','mobile','date',]
+        model = KYC
+        fields = ['full_name','image','gender','date_of_birth','signature','mobile']
         widgets = {
             "full_name": forms.TextInput(attrs={"placeholder": "Full Name"}),
-            "mobile": forms.TextInput(attrs={"placeholder": "Mobile"}),  
+            "mobile": forms.TextInput(attrs={"placeholder": "Mobile"}), 
         }
