@@ -5,29 +5,29 @@ from userauths.models import User
 from django.db.models.signals import post_save
 
 ACCOUNT_STATUS = (
-    ("active", "Active"),
-    ("pending", "Pending"),
-    ("in-active", "In-active")
+    ("active", "Activo"),
+    ("pending", "Pendiente"),
+    ("in-active", "Inactivo")
 )
 
-# MARITAL_STATUS = (
-#     ("married", "Married"),
-#     ("single", "Single"),
-#     ("other", "Other")
-# )
+MARITAL_STATUS = (
+    ("married", "Casado"),
+    ("single", "Soltero"),
+    ("other", "Otro")
+)
 
 GENDER = (
-    ("male", "Male"),
-    ("female", "Female"),
-    ("other", "Other")
+    ("male", "Hombre"),
+    ("female", "Mujer"),
+    ("other", "Otro")
 )
 
 
-# IDENTITY_TYPE = (
-#     ("national_id_card", "National ID Card"),
-#     ("drivers_licence", "Drives Licence"),
-#     ("international_passport", "International Passport")
-# )
+IDENTITY_TYPE = (
+    ("national_id_card", "INE"),
+    ("drivers_licence", "Licencia de conducir"),
+    ("international_passport", "Pasaporte")
+)
 
 
 def user_directory_path(instance, filename):
@@ -44,8 +44,6 @@ class Account(models.Model):
     pin_number = ShortUUIDField(unique=True, length=4, max_length=7, alphabet="1234567890") # 2743
     red_code = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefgh1234567890") # 2743unique=TRUE,
     account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="in-active")
-    #identity_type = models.CharField(choices=IDENTITY_TYPE, max_length=140)
-    #identity_image = models.ImageField(upload_to="kyc", null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     kyc_submitted = models.BooleanField(default=False)
     kyc_confirmed = models.BooleanField(default=False)
@@ -64,14 +62,20 @@ class KYC(models.Model):
     full_name = models.CharField(max_length=1000)
     image = models.ImageField(upload_to="kyc", default="default.jpg")
     #nationality = models.CharField(max_length=100)
-    #marrital_status = models.CharField(choices=MARITIAL_STATUS, max_length=40)
+    marrital_status = models.CharField(choices=MARITAL_STATUS, max_length=40)
     gender = models.CharField(choices=GENDER, max_length=40)
+    identity_type = models.CharField(choices=IDENTITY_TYPE, max_length=140)
+    identity_image = models.ImageField(upload_to="kyc", null=True, blank=True)
     date_of_birth = models.DateTimeField(auto_now_add=False)
     signature = models.ImageField(upload_to="kyc")
     
+    #address
+    state = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    
     #Contact Detail
     mobile = models.CharField(max_length=1000)
-    #fax = models.CharField(max_length=1000)
+    fax = models.CharField(max_length=1000)
     date = models.DateTimeField(auto_now_add=True)
     
     

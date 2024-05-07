@@ -52,7 +52,7 @@
                         <div class="tab-main">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="account-tab" data-bs-toggle="tab"
+                                    <button class="nav-link active text-center" id="account-tab" data-bs-toggle="tab"
                                         data-bs-target="#account" type="button" role="tab" aria-controls="account"
                                         aria-selected="true">KYC registration form</button>
                                 </li>
@@ -82,34 +82,87 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <form method="POST">
-                                        {% csrf_token %}
+                                    <form action="#">
                                         <div class="row justify-content-center">
                                             <div class="col-md-6">
                                                 <div class="single-input">
-                                                    <label for="fName">Nombre completo</label>
-                                                    {{form.full_name}}
+                                                    <label for="fName">First Name</label>
+                                                    <input type="text" id="fName" placeholder="Alfred">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="single-input">
-                                                    <label for="fName">Número Telefónico</label>
-                                                    {{form.mobile}}
+                                                    <label for="lName">Last Name</label>
+                                                    <input type="text" id="lName" placeholder="Davis">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-12">
                                                 <div class="single-input">
-                                                    <label for="fName">Genero</label>
-                                                    {{form.gender}}
+                                                    <label for="email">Email</label>
+                                                    <div class="row input-status d-flex align-items-center">
+                                                        <div class="col-6">
+                                                            <input type="text" id="email"
+                                                                placeholder="alfred6598@gmail.com">
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="pending">
+                                                                <img src="{% static 'assets1/images/icon/pending.png' %}"
+                                                                    alt="icon">
+                                                                E-mail confirmation in pending
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-12">
                                                 <div class="single-input">
-                                                    <label for="fName">Fecha de nacimiento</label>
-                                                    {{form.date_of_birth}}
+                                                    <label for="phone">Phone</label>
+                                                    <div class="row input-status d-flex align-items-center">
+                                                        <div class="col-6">
+                                                            <input type="text" id="phone" placeholder="(316) 555-0116">
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="confirm">
+                                                                <img src="{% static 'assets1/images/icon/confirm.png' %}"
+                                                                    alt="icon">
+                                                                Phone number confirm
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12">
+                                                <div class="single-input file">
+                                                    <label>ID Confirmation documents</label>
+                                                    <div class="row input-status d-flex align-items-center">
+                                                        <div class="col-6">
+                                                            <div class="file-upload">
+                                                                <div class="right-area">
+                                                                    <label class="file">
+                                                                        <input type="file">
+                                                                        <span class="file-custom"></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="notconfirm">
+                                                                <img src="{% static 'assets1/images/icon/not-confirm.png' %}"
+                                                                    alt="icon">
+                                                                Person not confirmed
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-input">
+                                                    <label for="address">Address</label>
+                                                    <input type="text" id="address"
+                                                        placeholder="2972 Westheimer Rd. Santa Ana, Illinois 85486">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
                                                 <div class="btn-border">
                                                     <button class="cmn-btn">Account</button>
                                                 </div>
