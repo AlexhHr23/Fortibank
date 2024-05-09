@@ -100,7 +100,7 @@
                                 </li>
                             </ul>
                             <div class="right-area header-action d-flex align-items-center max-un">
-                                
+                                <!-- alert start -->
                                 {% if request.user.is_authenticated %}
                                 <a href="{% url 'userauths:sign-out' %}" class="login cmn-btn">Cerrar Sesión</a>
                                 {% else %}
@@ -109,7 +109,7 @@
                                     <i class="fas fa-caret-right"></i>
                                 </a>
                                 {% endif %}
-                                
+                                <!-- alert end -->
                             </div>
                         </div>
                     </nav>
