@@ -26,6 +26,7 @@ def kyc_registration(request):
         form = KYCForm(instance=kyc) 
     context = {
         "account": account,
-        "form": form
+        "form": form,
+        "kyc": kyc,
     }
     return render(request, "account/kyc-form.html", context)

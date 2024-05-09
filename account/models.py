@@ -12,8 +12,7 @@ ACCOUNT_STATUS = (
 
 MARITAL_STATUS = (
     ("married", "Casado"),
-    ("single", "Soltero"),
-    ("other", "Otro")
+    ("single", "Soltero")
 )
 
 GENDER = (
@@ -81,7 +80,6 @@ class KYC(models.Model):
     
     def __str__(self):
         return f"{self.user}"
-    
     
     
 def create_account(sender, instance, created, **kwargs):
