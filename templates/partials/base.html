@@ -102,6 +102,7 @@
                             <div class="right-area header-action d-flex align-items-center max-un">
                                 <!-- alert start -->
                                 {% if request.user.is_authenticated %}
+                                <a href="/admin" class="login cmn-btn">Administrador</a>
                                 <a href="{% url 'userauths:sign-out' %}" class="login cmn-btn">Cerrar Sesión</a>
                                 {% else %}
                                 <a href="{% url 'userauths:sign-in' %}" class="login">Login</a>

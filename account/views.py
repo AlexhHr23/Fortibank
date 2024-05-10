@@ -12,7 +12,7 @@ def account(request):
             kyc = KYC.objects.get(user=request.user)
         except:
               messages.warning(request, "Necesitas enviar tu formulario")
-              return redirect("account:account")   
+              return redirect("account:kyc-reg")   
 
         account = Account.objects.get(user=request.user)
     else:

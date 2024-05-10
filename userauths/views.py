@@ -19,11 +19,11 @@ def RegisterView(request):
             new_user = authenticate(username=form.cleaned_data['email'], 
                                     password=form.cleaned_data['password1'])
             login(request, new_user)
-            return redirect("core:index")
+            return redirect("account:account")
         
     if request.user.is_authenticated:
         messages.warning(request, f"Hey correcto.")
-        return redirect("core:index")
+        return redirect("account:account")
     
     else:
         form = UserRegisterForm()
@@ -45,16 +45,20 @@ def LoginView(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, "Inicio de sesión exitoso.")
-                return redirect("core:index")
+                return redirect("account:account")
             else:
                 messages.warning(request, "usuario o contraseña no es correcto")
                 return redirect("userauths:sign-in")
         except: 
             messages.warning(request, "No existe el usuario")
-            
+        
+    if request.user.is_authenticated:
+        messages.warning(request, "Has iniciado sesión.")
+        return redirect("account:account")
+    
     return render(request, "userauths/sign-in.html")
 
 def LogoutView(request):
     logout(request)
-    messages.success(request, "Has sido desconectado.")
+    messages.success(request, "Cierre de sesión")
     return redirect("userauths:sign-in")

@@ -150,6 +150,9 @@
                                     </div>
                                     <ul>
                                         <li class="border-area">
+                                            <a href="/admin"><i class="fas fa-user"></i>Administrador</a>
+                                        </li>
+                                        <li class="border-area">
                                             <a href="account.html"><i class="fas fa-cog"></i>Settings</a>
                                         </li>
                                         <li>
@@ -254,20 +257,27 @@
                 </div>
             </div>
         </div>
-        <!-- start alert -->
-        <div class="alert alert-success">
-            <strong>Exitoso</strong>
+
+        {% if messages %}
+        {% for m in messages %}
+        <div class="alert alert-{{m.tags}}">
+            <strong>{{m}}</strong>
         </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- start alert -->
+
         <!-- end  -->
-        
+
     </header>
     <!-- header-section end -->
 
-    
+
     {% block content %}
-        
+
     {% endblock content %}
-        
+
     <!--==================================================================-->
     <script src="{% static 'assets1/js/jquery.min.js' %}"></script>
     <script src="{% static 'assets1/js/bootstrap.min.js' %}"></script>
