@@ -50,10 +50,10 @@
                         <span class="mdr">You Send</span>
                         <div class="input-area">
                             <input class="xxlr" onkeyup="CalculateBalance()"
-                                placeholder="{{request.user.account.account_balance|intcomma}}" type="number"
+                                placeholder="{{request.user.account.account_balance|floatformat:'0.2f'}}" type="number"
                                 name="amount-send" id="amount-send">
                         </div>
-                        <p>Saldo disponible<b>${{request.user.account.account_balance|intcomma}}</b></p>
+                        <p>Saldo disponible<b>${{request.user.account.account_balance|floatformat:"0.2f"}}</b></p>
                         <p id="new_balance"></p>
                         <p class="text-danger" id="error-div"></p>
                     </div>
@@ -104,7 +104,7 @@
                             <h5>Total To Pay</h5>
                         </li>
                         <li>
-                            <h5 id="total-to-pay">USD 0.00</h5>
+                            <h5 id="total-to-pay">FP 0.00</h5>
                         </li>
                     </ul>
                     <div class="footer-area mt-40">
