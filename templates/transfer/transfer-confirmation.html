@@ -138,15 +138,15 @@
                                         <h4>Confirm Transfer!</h4>
                                         <p>We have sent a verification code on your phone + Number +44831***932. Please
                                             enter verification code below</p>
-                                        <form action="javascript:void(0)">
+                                        <form method="POST" action="{% url 'core:transfer-process' account.account_number transaction.transaction_id %}">
+                                            {% csrf_token %}
                                             <div class="userInput">
-                                                <input type="text">
-                                                <input type="text">
-                                                <input type="text">
-                                                <input type="text">
+
+                                                <input minlength="4" maxlength="4" type="text" name="pin-number" placeholder="Ingresa Pin">
+
                                             </div>
                                             <a href="javascript:void(0)">Don’t receive a code?</a>
-                                            <button class="mt-60 confirm">Confirm</button>
+                                            <button type="submit" class="mt-60 confirm">Confirm</button>
                                         </form>
                                     </div>
                                 </div>

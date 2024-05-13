@@ -14,10 +14,10 @@ TRANSACTION_TYPE = (
 
 
 TRANSACTION_STATUS = (
-    ("failed", "Transferir"),
-    ("complete", "Transferir"),
-    ("pending", "Transferir"),
-    ("processing", "Transferir"),
+    ("failed", "Fallido"),
+    ("completed", "Completado"),
+    ("pending", "Pendiente"),
+    ("processing", "Procesando"),
     
 )
 

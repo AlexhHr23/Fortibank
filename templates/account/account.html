@@ -80,7 +80,8 @@
                                                 <img style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;" src="{{ kyc.image.url }}" alt="image">
                                             </div>
                                             <div class="instraction">
-                                                <h6>Your Avatar</h6>
+                                                <h6>{{kyc.full_name|title}}</h6>
+                                                <p>Tu saldo: {{ account.account_balance|floatformat:"0.2f"}}</p>
                                                 <!-- <p>Profile picture size: 400px x 400px</p> -->
                                             </div>
                                         </div>

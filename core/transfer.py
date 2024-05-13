@@ -95,3 +95,40 @@ def TransferConfirmation(request, account_number, transaction_id):
         "transaction": transaction
     }
     return render(request, "transfer/transfer-confirmation.html", context)
+
+def TransferProcess(request, account_number, transaction_id):
+    account = Account.objects.get(account_number=account_number)
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+    
+    sender = request.user  
+    reciever = (account.user) 
+
+    sender_account = request.user.account
+    reciever_account = account
+    
+    completed = False
+    if request.method == "POST":
+        pin_number = request.POST.get("pin-number")
+        
+        if pin_number == sender_account.pin_number:
+            transaction.status = "completed"
+            transaction.save()
+            
+            # Descuenta el monto que envia el usuario desde su cuenta
+            sender_account.account_balance -= transaction.amount
+            sender_account.save()
+            
+            #Agrega el monto que se eliminó de la cuenta a la persona a la que también se le envío el dinero.
+            account.account_balance += transaction.amount
+            account.save()
+            
+            messages.success(request, "Trasnferencia exitosa")
+            return redirect("account:account")
+        else:
+            messages.warning(request, "Pin Incorrecto.")
+            return redirect('core:transfer_confirmation', account.account_number,  transaction.transaction_id)
+    else:
+        messages.warning(request, "Ocurrio un error, Intentalo más tarde.")
+        return redirect('account:account')
+
+    
