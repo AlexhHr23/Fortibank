@@ -44,12 +44,12 @@
                         </div>
                     </div>
                 </div>
-                <form action="{% url 'core:amount-transfer-process' account.account_number  %}" method="POST">
+                <form action="{% url 'core:amount-request-process' account.account_number  %}" method="POST">
                     {% csrf_token %}
                     <div class="send-banance">
                         <span class="mdr">You request</span>
                         <div class="input-area">
-                            <input class="xxlr" placeholder="Enter Amount" type="number" name="amount-send" id="amount-request">
+                            <input class="xxlr" placeholder="Enter Amount" type="number" name="amount-request" id="amount-request">
                         </div>
                     </div>
                     <!-- Js -->
@@ -57,7 +57,7 @@
                     <div class="send-banance pt-0 mt-0">
                         <span class="mdr">Request Description</span>
                         <div class="input-area">
-                            <input class="xxlr" placeholder="Request money for house rent" type="text"
+                            <input class="xxlr" placeholder="Request money for house rent" type="description"
                                 name="description">
 
                         </div>
