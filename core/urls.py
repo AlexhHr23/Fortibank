@@ -20,6 +20,7 @@ urlpatterns = [
     path("transaction-detail/<transaction_id>", transaction.transaction_detail, name="transaction-detail"),
     
     #Paymente request
-     path("search-account-account/",payment_request.SearchUserRequest, name="request-search-account"),
+     path("request-search-account/",payment_request.SearchUserRequest, name="request-search-account"),
+     path("amount-request/<account_number>/",payment_request.AmountRequest, name="amount-request"),
      
 ]
