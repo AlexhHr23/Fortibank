@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Paylio - Money Transfer and Online Payments Dashboard HTML Template</title>
 
-    <link rel="shortcut icon" href="{% static 'assets1/images/fav.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'assets1/images/AB-FortiBank.jpg' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'assets1/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets1/css/fontawesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets1/css/jquery-ui.css' %}">
@@ -171,11 +171,11 @@
                             <i class="fa-solid fa-xmark"></i>
                         </div>
                         <div class="sidebar-logo">
-                            <a href="dashboard.html"><img src="{% static 'assets1/images/logo.png' %}" alt="logo"></a>
+                            <a href="{% url 'account:dashboard' %}"><img src="{% static 'assets1/images/logo.png' %}" alt="logo"></a>
                         </div>
                         <ul>
                             <li>
-                                <a href="dashboard.html">
+                                <a href="{% url 'account:dashboard' %}">
                                     <img src="{% static 'assets1/images/icon/dashboard.png' %}" alt="Dashboard">
                                     <span>Dashboard</span>
                                 </a>
