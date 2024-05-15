@@ -17,7 +17,7 @@
                 <div class="choose-recipient">
                     <div class="step-area">
                         <span class="mdr">Step 3 of 3</span>
-                        <h5>Confirm Request</h5>
+                        <h5>Confirm Your Transfer</h5>
                     </div>
                     <div class="user-select">
                         <div class="single-user">
@@ -59,16 +59,12 @@
                         <div class="col-xl-6">
                             <ul class="details-list">
                                 <li>
-                                    <span>You Requested</span>
+                                    <span>You request</span>
                                     <b>{{ transaction.amount|floatformat:"0.2f" }} FP</b>
                                 </li>
                                 <li>
-                                    <span>Recipient gets</span>
-                                    <b>{{ transaction.amount|floatformat:"0.2f" }} FP</b>
-                                </li>
-                                <li>
-                                    <span>E-mail of receiver</span>
-                                    <b>{{ account.user.email }}</b>
+                                    <span>From</span>
+                                    <b>{{ account.user.kyc.full_name }}</b>
                                 </li>
                                 <li>
                                     <span>Fee</span>
@@ -135,10 +131,10 @@
                                             aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                                     </div>
                                     <div class="main-content">
-                                        <h4>Confirm request!</h4>
+                                        <h4>Confirm Transfer!</h4>
                                         <p>We have sent a verification code on your phone + Number +44831***932. Please
                                             enter verification code below</p>
-                                        <form method="POST" action="">
+                                        <form method="POST" action="{% url 'core:transfer-process' account.account_number transaction.transaction_id %}">
                                             {% csrf_token %}
                                             <div class="userInput">
 
