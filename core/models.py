@@ -8,17 +8,20 @@ TRANSACTION_TYPE = (
     ("recieved", "Recivir"),
     ("withdraw", "Retirar"),
     ("refund", "Reembolso"),
-    ("request", "Peticion"),
+    ("request", "Payment Request"),
     ("none", "Ninguno"),
 )
 
 
 TRANSACTION_STATUS = (
-    ("failed", "Fallido"),
-    ("completed", "Completado"),
-    ("pending", "Pendiente"),
-    ("processing", "Procesando"),
-    ("requested", "Solicitado"),
+    ("failed", "failed"),
+    ("completed", "completed"),
+    ("pending", "pending"),
+    ("processing", "processing"),
+    ("requested", "requested"),
+    ("request_send", "requested sent"),
+    ("request_settled", "request settled"),
+    ("request_processing", "request processing"),
     
 )
 

@@ -64,7 +64,7 @@ def AmountRequestProcess(request, account_number):
         transaction_id = new_request.transaction_id
         return redirect("core:amount-request-confirmation", account.account_number, transaction_id)
     else:
-        messages.warning(request, "Error Occured, try again later.")
+        messages.warning(request, "Ocurrio un error. Intentelo más tarde.")
         return redirect("account:dashboard")
 
 def AmountRequestConfirmation(request, account_number, transaction_id):
@@ -76,3 +76,31 @@ def AmountRequestConfirmation(request, account_number, transaction_id):
         "transaction":transaction,
     }
     return render(request, "payment_request/amount-request-confirmation.html", context)
+
+
+def AmountRequestFinalProcess(request, account_number, transaction_id):
+    account = Account.objects.get(account_number=account_number)
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+    
+    
+    if request.method == "POST":
+        pin_number = request.POST.get("pin-number")
+        if pin_number == request.user.account.pin_number:
+            transaction.status = "request_send"
+            transaction.save()
+            
+            messages.success(request,"Su solicitud de pago ha sido enviada exitosamente")
+            return redirect("core:amount-request-completed", account.account_number, transaction.transaction_id)
+    else:
+        messages.warning(request,"Ocurrio un error. Intentalo más tarde")
+        return redirect("account:dashboard")
+    
+def RequestCompleted(request,account_number ,transaction_id):
+    account = Account.objects.get(account_number=account_number)
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+    
+    context = {
+        "account":account,
+        "transaction":transaction,
+    }
+    return render(request, "payment_request/amount-request-completed.html", context)
