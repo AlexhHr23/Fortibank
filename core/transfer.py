@@ -127,7 +127,7 @@ def TransferProcess(request, account_number, transaction_id):
             return redirect("core:transfer-completed",  account.account_number,  transaction.transaction_id)
         else:
             messages.warning(request, "Pin Incorrecto.")
-            return redirect('core:transfer_confirmation', account.account_number,  transaction.transaction_id)
+            return redirect('core:settled_confirmation', account.account_number,  transaction.transaction_id)
     else:
         messages.warning(request, "Ocurrio un error, Intentalo más tarde.")
         return redirect('account:account')

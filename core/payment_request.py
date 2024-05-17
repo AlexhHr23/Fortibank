@@ -116,3 +116,45 @@ def settlement_confirmation(request, account_number, transaction_id):
         "transaction":transaction,
     }
     return render(request, "payment_request/settlement-confirmation.html", context)
+
+def settlement_processing(request, account_number, transaction_id):
+    account = Account.objects.get(account_number=account_number)
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+    
+    sender = request.user
+    sender_account = request.user.account
+    
+    if request.method == "POST":
+        pin_number = request.POST.get("pin-number")
+        if pin_number == request.user.account.pin_number:
+            if sender_account.account_balance <= 0 or sender_account.account_balance < transaction.amount:
+                messages.warning(request, "Fondos insuficientes, Encuentra tu cuenta y vuelve a intentarlo")
+            else:
+                sender_account.account_balance -= transaction.amount
+                sender_account.save()
+                
+                account.account_balance += transaction.amount
+                account.save()
+                
+                transaction.status = "request_settled"
+                transaction.save()
+                
+                messages.success(request, f"La liquidación para {account.user.kyc.full_name} se realizó correctamente")
+                return redirect("core:settlement-completed")
+        else: 
+            messages.warning(request, "Pin incorrecto")
+            return redirect('core:settlement-confirmation', account.account_number, transaction.transaction_id)
+    else: 
+        messages.warning(request, "Ocurrio un error")
+        return redirect('account:dashboard', account.account_number, transaction.transaction_id)
+
+
+def settlement_completed(request,account_number ,transaction_id):
+    account = Account.objects.get(account_number=account_number)
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+    
+    context = {
+        "account":account,
+        "transaction":transaction,
+    }
+    return render(request, "payment_request/settlement-completed.html", context)
