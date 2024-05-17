@@ -9,7 +9,7 @@
             <div class="container-fruid">
                 <div class="main-content">
                     <div class="head-area d-flex align-items-center justify-content-between">
-                        <h4>Make a Payment</h4>
+                        <h4>Realizar un transferencia</h4>
                         <div class="icon-area">
                             <!-- <img src="{% static 'assets1/images/icon/support-icon.png' %}" alt="icon"> -->
                         </div>
@@ -19,9 +19,10 @@
                             <div class="icon-area">
                                 <img src="{% static 'assets1/images/icon/submitted-icon.png' %}" alt="icon">
                             </div>
-                            <h3>Submitted</h3>
-                            <p>Payment request <b>{{ transaction.transaction_id }}</b> was sent to morris <b>{{ account.user.kyc.full_name }}</b></p>
-                            <h5><a href=""><b>View Detail</b></a> | <a href=""><b>Request another Payment</b></a></h5>
+                            <h3>Enviada</h3>
+                            <p>La transferencia <b>{{ transaction.transaction_id }}</b> se envió a  <b>{{ account.user.kyc.full_name }}</b></p>
+                            <!--<h5><a href=""><b>View Detail</b></a> | <a href=""><b>Request another Payment</b></a></h5> -->
+                            <h5><a href="{% url 'account:dashboard' %}"><b>Terminar</b></a></h5> 
                         </div>
                     </div>
                 </div>

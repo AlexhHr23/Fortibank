@@ -53,10 +53,10 @@
                                     <img src="{% static 'assets1/images/icon/logout.png' %}" alt="image">
                                     Logout
                                 </a>
-                                <a href="javascript:void(0)" class="delete">
+                                <!-- <a href="javascript:void(0)" class="delete">
                                     <img src="{% static 'assets1/images/icon/delete-2.png' %}" alt="image">
                                     Delete Account
-                                </a>
+                                </a> -->
                                 {% endif %}
                             </div>
                         </div>
@@ -91,55 +91,55 @@
                                         <div class="row justify-content-center">
                                             <div class="col-md-6">
                                                 <div class="single-input">
-                                                    <label for="fName">First Name</label>
+                                                    <label for="fName">Nombre</label>
                                                     <input type="text" id="fName" placeholder="Alfred" value="{{kyc.full_name|title}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="single-input">
-                                                    <label for="fName">Email</label>
+                                                    <label for="fName">Correo electrónico</label>
                                                     <input type="text" id="fName" placeholder="Alfred" value="{{kyc.user.email}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="single-input">
-                                                    <label for="fName">Gender</label>
+                                                    <label for="fName">Genero</label>
                                                     <input type="text" id="fName" placeholder="Alfred" value="{{kyc.gender|title}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="single-input">
-                                                    <label for="fName">Marrital status</label>
+                                                    <label for="fName">Estado civil</label>
                                                     <input type="text" id="fName" placeholder="Alfred" value="{{kyc.marrital_status|title}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="single-input">
-                                                    <label for="fName">Date of birth</label>
+                                                    <label for="fName">Fecha de nacimiento</label>
                                                     <input type="text" id="fName" placeholder="Alfred" value="{{kyc.date_of_birth|date:'d M, Y'}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="single-input">
-                                                    <label for="fName">mobile</label>
+                                                    <label for="fName">Numero de teléfonico</label>
                                                     <input type="text" id="fName" placeholder="Alfred" value="{{kyc.mobile}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="single-input">
-                                                    <label for="fName">Identity type</label>
+                                                    <label for="fName">Identificació </label>
                                                     <input type="text" id="fName" placeholder="Alfred" value="{{kyc.identity_type|title}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="single-input">
-                                                    <label for="fName">State</label>
+                                                    <label for="fName">Estado</label>
                                                     <input type="text" id="fName" placeholder="Alfred" value="{{kyc.state|title}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="single-input">
-                                                    <label for="fName">City</label>
+                                                    <label for="fName">Ciudad</label>
                                                     <input type="text" id="fName" placeholder="Alfred" value="{{kyc.city|title}}">
                                                 </div>
                                             </div>
@@ -165,7 +165,7 @@
                                             <br><br>
                                             <div class="col-md-12">
                                                 <div class="btn-border">
-                                                    <button class="cmn-btn">Account</button>
+                                                    <button class="cmn-btn">Enviar</button>
                                                 </div>
                                             </div>
                                         </div>

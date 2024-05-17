@@ -45,24 +45,24 @@
                     <form action="{% url 'core:amount-request-process' account.account_number  %}" method="POST">
                         {% csrf_token %}
                         <div class="send-banance">
-                            <span class="mdr">You Request</span>
+                            <span class="mdr">Tu solicitud</span>
                             <div class="input-area">
-                                <input class="xxlr" placeholder="Enter Amount Request" type="number" name="amount-request" id="amount-request">
+                                <input class="xxlr" placeholder="Ingrese la solicitud de monto" type="number" name="amount-request" id="amount-request">
                             </div>
                             
                         </div>
                         <!-- Js -->
 
                         <div class="send-banance pt-0 mt-0">
-                            <span class="mdr">Request Description</span>
+                            <span class="mdr">Descripción de la solicitud</span>
                             <div class="input-area">
-                                <input class="xxlr" placeholder="Request money for house rent" type="text" name="description">
+                                <input class="xxlr" placeholder="Concepto de la solicitud" type="text" name="description">
                                 
                             </div>
                         </div>
                         <div class="footer-area mt-40">
-                            <a href="{% url 'core:request-search-account' %}">Previous Step</a>
-                            <button type="submit" style="padding: 10px 30px; border-radius: 10px; background: rgb(98, 0, 255); color: #fff;" class="active">Next</button>
+                            <a href="{% url 'core:request-search-account' %}">Regresar</a>
+                            <button type="submit" style="padding: 10px 30px; border-radius: 10px; background: rgb(98, 0, 255); color: #fff;" class="active">Siguiente</button>
                         </div>
                     </form>
                 </div>

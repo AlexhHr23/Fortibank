@@ -7,7 +7,7 @@
             <div class="container-fruid">
                 <div class="main-content">
                     <div class="head-area d-flex align-items-center justify-content-between">
-                        <h4>Make a Payment</h4>
+                        <h4>Realizar un transferencia</h4>
                         <div class="icon-area">
                             <img src="{% static 'assets1/images/icon/support-icon.png' %}" alt="icon">
                         </div>
@@ -42,8 +42,8 @@
                     <form  class="flex-fill" method="POST">
                         {% csrf_token %}
                         <div class="form-group d-flex align-items-center">
-                            <img src="{% static 'assets1/images/icon/search.png' %}" alt="icon">
-                            <input type="text" name="account_number" placeholder="Enter Account Number or ID">
+                            <!-- <img src="{% static 'assets1/images/icon/search.png' %}" alt="icon"> -->
+                            <input type="text" name="account_number" placeholder="Ingrese el número de cuenta o ID">
                             <button type="submit"><i class="fas fa-angle-right"></i></button>
                         </div>
                     </form>
@@ -64,12 +64,12 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <a href="{% url 'core:amount-transfer' a.account_number  %}">Choose</a>
+                                <a href="{% url 'core:amount-transfer' a.account_number  %}">Transferir</a>
                             </div>
                         </div>
                         {% empty %}
                         <div>
-                            <h4 class="mt-4">Account does not exist</h4>
+                            <h4 class="mt-4">La cuenta no existe</h4>
                         </div>
                         {% endfor %}
                         {% endif %}

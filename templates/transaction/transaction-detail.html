@@ -19,7 +19,7 @@
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header justify-content-between">
-                                                            <h5>Transaction Details</h5>
+                                                            <h5>Detalles de Transacción</h5>
                                                             <a href="{% url 'account:dashboard' %}"><i class="material-symbols-outlined">volver al inicio</i></a>
                                                         </div>
                                                         <div class="main-content">
@@ -50,34 +50,34 @@
                                                                 </div>
                                                                 <div class="col-sm-7">
                                                                     <div class="right-area">
-                                                                        <h6>Transaction Details</h6>
+                                                                        <h6>Detalles de Transacción</h6>
                                                                         <ul class="payment-details">
                                                                             <li>
-                                                                                <span>Payment Amount</span>
+                                                                                <span>Monto del pago</span>
                                                                                 <span>{{transaction.amount|floatformat:"0.2f"}} FP</span>
                                                                             </li>
                                                                             <li>
-                                                                                <span>Total Amount</span>
+                                                                                <span>Monto total</span>
                                                                                 <span>{{transaction.amount|floatformat:"0.2f"}} FP</span>
                                                                             </li>
                                                                         </ul>
                                                                         <ul class="payment-info">
                                                                             <li>
-                                                                                <p>Payment From</p>
+                                                                                <p>Pago de</p>
                                                                                 <span class="mdr">{{transaction.sender.kyc.full_name|title}}</span>
                                                                             </li>
                                                                             <li>
-                                                                                <p>Payment To</p>
+                                                                                <p>Pago para</p>
                                                                                 <span class="mdr">{{transaction.reciever.kyc.full_name|title}}</span>
                                                                             </li>
                                                                             <li>
-                                                                                <p>Payment Description</p>
+                                                                                <p>Concepto</p>
                                                                                 <span class="mdr">{{transaction.description}}</span>
                                                                             </li>
-                                                                            <li>
-                                                                                <p>Transaction ID:</p>
+                                                                            <!-- <li>
+                                                                                <p>ID de la transaccion:</p>
                                                                                 <span class="mdr">{{transaction.transaction_id}}</span>
-                                                                            </li>
+                                                                            </li> -->
                                                                         </ul>
                                                                     </div>
                                                                 </div>

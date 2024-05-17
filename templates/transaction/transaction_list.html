@@ -12,29 +12,28 @@
                     <div class="section-content">
                         <div class="transactions-area">
                             <div class="section-text">
-                                <h5>Transactions</h5>
-                                <p>Updated every several minutes</p>
+                                <h5>Transacciones</h5>
+                        
                             </div>
                             <div class="top-area d-flex align-items-center justify-content-between">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item" role="presentation"><button class="nav-link active"
                                             id="latest-tab" data-bs-toggle="tab" data-bs-target="#latest" type="button"
-                                            role="tab" aria-controls="latest" aria-selected="true">Sent
-                                            Transfer</button>
+                                            role="tab" aria-controls="latest" aria-selected="true">Transferencia enviada</button>
                                     </li>
                                     <li class="nav-item" role="presentation"><button class="nav-link" id="upcoming-tab"
                                             data-bs-toggle="tab" data-bs-target="#upcoming" type="button" role="tab"
-                                            aria-controls="upcoming" aria-selected="false">Received Transfer</button>
+                                            aria-controls="upcoming" aria-selected="false">Transferencias recibida</button>
                                     </li>
                                     <li class="nav-item" role="presentation"><button class="nav-link"
                                             id="sender-request-tab" data-bs-toggle="tab"
                                             data-bs-target="#sender-request" type="button" role="tab"
-                                            aria-controls="upcoming" aria-selected="false">Sent Request</button>
+                                            aria-controls="upcoming" aria-selected="false">Solicitudes enviadas</button>
                                     </li>
                                     <li class="nav-item" role="presentation"><button class="nav-link"
                                             id="reciever-request-tab" data-bs-toggle="tab"
                                             data-bs-target="#reciever-request" type="button" role="tab"
-                                            aria-controls="upcoming" aria-selected="false">Receive Request</button>
+                                            aria-controls="upcoming" aria-selected="false">Solicitudes recibidas</button>
                                     </li>
                                 </ul>
                                 <div class="view-all d-flex align-items-center">
@@ -49,11 +48,12 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Name/ Business</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Amount</th>
-                                                    <th scope="col">Action</th>
+                                                    <th scope="col">Nombre/Negocio
+                                                    </th>
+                                                    <th scope="col">Fecha</th>
+                                                    <th scope="col">Estado</th>
+                                                    <th scope="col">Monto</th>
+                                                    <th scope="col">Acción</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -102,11 +102,11 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Name/ Business</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Amount</th>
-                                                    <th scope="col">Action</th>
+                                                    <th scope="col">Nombre/Negocio</th>
+                                                    <th scope="col">Fecha</th>
+                                                    <th scope="col">Estado</th>
+                                                    <th scope="col">Monto</th>
+                                                    <th scope="col">Acción</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -156,11 +156,11 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Name/Bussines</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Amount</th>
-                                                    <th scope="col">Action</th>
+                                                    <th scope="col">Nombre/Negocio</th>
+                                                    <th scope="col">Fecha</th>
+                                                    <th scope="col">Estado</th>
+                                                    <th scope="col">Monto</th>
+                                                    <th scope="col">Acción</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -202,11 +202,11 @@
                                                     </td>
                                                     <td>
                                                         {% if s.status == "request_send" %}
-                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
+                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> Ver</a>
                                                             <a href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
                                                         {% endif %}
                                                         {% if s.status == "request_processing" %}
-                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
+                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> Cancelar</a>
                                                             <a href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
                                                         {% endif %}
                                                         {% if s.status == "request_settled" %}
@@ -227,11 +227,11 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Name/Bussines</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Amount</th>
-                                                    <th scope="col">Action</th>
+                                                    <th scope="col">Nombre/Negocio</th>
+                                                    <th scope="col">Fecha</th>
+                                                    <th scope="col">Estado</th>
+                                                    <th scope="col">Monto</th>
+                                                    <th scope="col">Acción</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -281,23 +281,20 @@
                                                     <td>
 
                                                         {% if s.status == "request_send" %}
-                                                        <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}"
-                                                            class="btn btn-primary"><i class="fas fa-check-circle"></i>
-                                                            Settle</a>
-                                                        <a href="{% url 'core:transaction-detail' s.transaction_id %}"
-                                                            class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
+                                                            <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}"
+                                                                class="btn btn-primary"><i class="fas fa-check-circle"></i>
+                                                                Ver</a>
+                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}"
+                                                            class="btn btn-danger"><i class="fas fa-x"></i> Cancelar</a>
                                                         {% endif %}
                                                         {% if s.status == "request_processing" %}
-                                                        <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}"
-                                                            class="btn btn-primary"><i class="fas fa-check-circle"></i>
-                                                            Settle</a>
-                                                        <a href="{% url 'core:transaction-detail' s.transaction_id %}"
-                                                            class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
+                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> Ver</a>
+                                                            <a href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}" class=" btn btn-danger"> <i class="fas fa-x"></i> Cancelar</a>
                                                         {% endif %}
                                                         {% if s.status == "request_settled" %}
-                                                        <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}"
-                                                            class="btn btn-success"><i class="fas fa-check-circle"></i>
-                                                            Settley</a>
+                                                            <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}"
+                                                                class="btn btn-success"><i class="fas fa-check-circle"></i>
+                                                                Settled</a>
                                                         {% endif %}
 
 
