@@ -159,3 +159,12 @@ def settlement_completed(request,account_number ,transaction_id):
         "transaction":transaction,
     }
     return render(request, "payment_request/settlement-completed.html", context)
+
+
+def deletePaymentRequest(request, account_number, transaction_id):
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+    
+    if request.user == transaction.user:
+        transaction.delete()
+        messages.success(request, "Solicitud de pago eliminada correctamente")
+        return redirect("core:transactions")

@@ -17,13 +17,24 @@
                             </div>
                             <div class="top-area d-flex align-items-center justify-content-between">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item" role="presentation"><button class="nav-link active" id="latest-tab" data-bs-toggle="tab"data-bs-target="#latest" type="button" role="tab" aria-controls="latest"aria-selected="true">Sent Transfer</button>
+                                    <li class="nav-item" role="presentation"><button class="nav-link active"
+                                            id="latest-tab" data-bs-toggle="tab" data-bs-target="#latest" type="button"
+                                            role="tab" aria-controls="latest" aria-selected="true">Sent
+                                            Transfer</button>
                                     </li>
-                                    <li class="nav-item" role="presentation"><button class="nav-link" id="upcoming-tab" data-bs-toggle="tab"data-bs-target="#upcoming" type="button" role="tab" aria-controls="upcoming"aria-selected="false">Received Transfer</button>
+                                    <li class="nav-item" role="presentation"><button class="nav-link" id="upcoming-tab"
+                                            data-bs-toggle="tab" data-bs-target="#upcoming" type="button" role="tab"
+                                            aria-controls="upcoming" aria-selected="false">Received Transfer</button>
                                     </li>
-                                    <li class="nav-item" role="presentation"><button class="nav-link" id="sender-request-tab" data-bs-toggle="tab"data-bs-target="#sender-request" type="button" role="tab" aria-controls="upcoming"aria-selected="false">Sent Request</button>
+                                    <li class="nav-item" role="presentation"><button class="nav-link"
+                                            id="sender-request-tab" data-bs-toggle="tab"
+                                            data-bs-target="#sender-request" type="button" role="tab"
+                                            aria-controls="upcoming" aria-selected="false">Sent Request</button>
                                     </li>
-                                    <li class="nav-item" role="presentation"><button class="nav-link" id="reciever-request-tab" data-bs-toggle="tab"data-bs-target="#reciever-request" type="button" role="tab" aria-controls="upcoming"aria-selected="false">Receive Request</button>
+                                    <li class="nav-item" role="presentation"><button class="nav-link"
+                                            id="reciever-request-tab" data-bs-toggle="tab"
+                                            data-bs-target="#reciever-request" type="button" role="tab"
+                                            aria-controls="upcoming" aria-selected="false">Receive Request</button>
                                     </li>
                                 </ul>
                                 <div class="view-all d-flex align-items-center">
@@ -58,23 +69,25 @@
                                                     <td>
 
                                                         {% if s.status == 'completed' %}
-                                                            <p class="text-success">{{ s.status|title}}</p>
+                                                        <p class="text-success">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'pending' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'failed' %}
-                                                            <p class="danger">{{ s.status|title}}</p>
+                                                        <p class="danger">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'processing' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                     </td>
                                                     <td>
-                                                        <p class="text-danger">-$FP {{ s.amount|floatformat:"0.2f" }} </p>
+                                                        <p class="text-danger">-$FP {{ s.amount|floatformat:"0.2f" }}
+                                                        </p>
                                                     </td>
                                                     <td>
-                                                        <a href="{% url 'core:transaction-detail' s.transaction_id %}" class=""><i class="fas fa-eye"></i></a>
+                                                        <a href="{% url 'core:transaction-detail' s.transaction_id %}"
+                                                            class=""><i class="fas fa-eye"></i></a>
                                                     </td>
                                                 </tr>
                                                 {% empty %}
@@ -110,23 +123,24 @@
                                                     <td>
 
                                                         {% if s.status == 'completed' %}
-                                                            <p class="text-success">{{ s.status|title}}</p>
+                                                        <p class="text-success">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'pending' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'failed' %}
-                                                            <p class="danger">{{ s.status|title}}</p>
+                                                        <p class="danger">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'processing' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                     </td>
                                                     <td>
                                                         <p class="completed">+$FP {{ s.amount|floatformat:"0.2f" }} </p>
                                                     </td>
                                                     <td>
-                                                        <a href="{% url 'core:transaction-detail' s.transaction_id %}" class=""><i class="fas fa-eye"></i></a>
+                                                        <a href="{% url 'core:transaction-detail' s.transaction_id %}"
+                                                            class=""><i class="fas fa-eye"></i></a>
                                                     </td>
                                                 </tr>
                                                 {% empty %}
@@ -136,7 +150,8 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="sender-request" role="tabpanel" aria-labelledby="sender-request-tab">
+                                <div class="tab-pane fade" id="sender-request" role="tabpanel"
+                                    aria-labelledby="sender-request-tab">
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
@@ -161,25 +176,25 @@
                                                     </td>
                                                     <td>
                                                         {% if s.status == 'completed' %}
-                                                            <p class="text-success">{{ s.status|title}}</p>
+                                                        <p class="text-success">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'pending' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'failed' %}
-                                                            <p class="danger">{{ s.status|title}}</p>
+                                                        <p class="danger">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'processing' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'request_send' %}
-                                                            <p class="text-success">{{ s.status|title}}</p>
+                                                        <p class="text-success">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'request_settled' %}
-                                                            <p class="text-success">{{ s.status|title}}</p>
+                                                        <p class="text-success">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'request_processing' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                     </td>
                                                     <td>
@@ -187,15 +202,15 @@
                                                     </td>
                                                     <td>
                                                         {% if s.status == "request_send" %}
-                                                            <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> Settled</a>
-                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
+                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
+                                                            <a href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
                                                         {% endif %}
-                                                        {% if s.status == "request_proccesing" %}
-                                                            <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> Settled</a>
-                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
+                                                        {% if s.status == "request_processing" %}
+                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
+                                                            <a href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
                                                         {% endif %}
                                                         {% if s.status == "request_settled" %}
-                                                            <a class="btn btn-success"><i class="fas fa-check-circle"></i> Done</a>
+                                                            <a class="btn btn-success"><i class="fas fa-check-circle"></i>Settley</a>
                                                         {% endif %}
                                                     </td>
                                                 </tr>
@@ -206,7 +221,8 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="reciever-request" role="tabpanel" aria-labelledby="reciever-request-tab">
+                                <div class="tab-pane fade" id="reciever-request" role="tabpanel"
+                                    aria-labelledby="reciever-request-tab">
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
@@ -231,46 +247,60 @@
                                                     </td>
                                                     <td>
                                                         {% if s.status == 'completed' %}
-                                                            <p class="text-success">{{ s.status|title}}</p>
+                                                        <p class="text-success">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'pending' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'failed' %}
-                                                            <p class="danger">{{ s.status|title}}</p>
+                                                        <p class="danger">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'processing' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'request_send' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'request_settled' %}
-                                                            <p class="text-success">{{ s.status|title}}</p>
+                                                        <p class="text-success">{{ s.status|title}}</p>
                                                         {% endif %}
                                                         {% if s.status == 'request_processing' %}
-                                                            <p class="inprogress">{{ s.status|title}}</p>
+                                                        <p class="inprogress">{{ s.status|title}}</p>
                                                         {% endif %}
                                                     </td>
                                                     <td>
                                                         {% if s.status == 'request_send' %}
-                                                            <p class="inprogress">+$FP {{ s.amount|floatformat:"0.2f" }} </p>
+                                                        <p class="inprogress">+$FP {{ s.amount|floatformat:"0.2f" }}
+                                                        </p>
                                                         {% endif %}
                                                         {% if s.status == 'request_settled' %}
-                                                            <p class="text-success">+$FP {{ s.amount|floatformat:"0.2f" }} </p>
+                                                        <p class="text-success">+$FP {{ s.amount|floatformat:"0.2f" }}
+                                                        </p>
                                                         {% endif %}
                                                     </td>
                                                     <td>
-                                                        
+
                                                         {% if s.status == "request_send" %}
-                                                            <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}" class="btn btn-primary"><i class="fas fa-eye"></i> Settled</a>
-                                                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
+                                                        <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}"
+                                                            class="btn btn-primary"><i class="fas fa-check-circle"></i>
+                                                            Settle</a>
+                                                        <a href="{% url 'core:transaction-detail' s.transaction_id %}"
+                                                            class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
+                                                        {% endif %}
+                                                        {% if s.status == "request_processing" %}
+                                                        <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}"
+                                                            class="btn btn-primary"><i class="fas fa-check-circle"></i>
+                                                            Settle</a>
+                                                        <a href="{% url 'core:transaction-detail' s.transaction_id %}"
+                                                            class="btn btn-danger"><i class="fas fa-x"></i> Cancel</a>
                                                         {% endif %}
                                                         {% if s.status == "request_settled" %}
-                                                            <a href="#" class="btn btn-success"><i class="fas fa-check-circle"></i> Settled</a>
+                                                        <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}"
+                                                            class="btn btn-success"><i class="fas fa-check-circle"></i>
+                                                            Settley</a>
                                                         {% endif %}
-                                                            
-                                                       
+
+
                                                     </td>
                                                 </tr>
                                                 {% empty %}
