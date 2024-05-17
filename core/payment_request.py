@@ -129,6 +129,7 @@ def settlement_processing(request, account_number, transaction_id):
         if pin_number == request.user.account.pin_number:
             if sender_account.account_balance <= 0 or sender_account.account_balance < transaction.amount:
                 messages.warning(request, "Fondos insuficientes, Encuentra tu cuenta y vuelve a intentarlo")
+                return redirect('account:dashboard')
             else:
                 sender_account.account_balance -= transaction.amount
                 sender_account.save()
@@ -140,7 +141,7 @@ def settlement_processing(request, account_number, transaction_id):
                 transaction.save()
                 
                 messages.success(request, f"La liquidación para {account.user.kyc.full_name} se realizó correctamente")
-                return redirect("core:settlement-completed")
+                return redirect("core:settlement-completed", account.account_number, transaction.transaction_id)
         else: 
             messages.warning(request, "Pin incorrecto")
             return redirect('core:settlement-confirmation', account.account_number, transaction.transaction_id)
