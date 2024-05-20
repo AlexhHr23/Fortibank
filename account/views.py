@@ -3,6 +3,10 @@ from account.models import KYC, Account
 from account.forms import KYCForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from core.forms import CrediCardForm
+
+
+
 
 
 #@login_required
@@ -62,6 +66,19 @@ def dashboard(request):
               return redirect("account:kyc-reg")   
 
         account = Account.objects.get(user=request.user)
+        
+        if request.method == "POST":
+            form = CrediCardForm(request.POST)
+            if form.is_valid():
+                new_form = form.save(commit=False)
+                new_form.user = request.user
+                new_form.save()
+                
+                card_id = new_form.card_id
+                messages.success(request, "Card Added Successfuly")
+                return redirect("account:dashboard")
+        else:
+            form = CrediCardForm()
     else:
         messages.warning(request, "Necesitas iniciar sesión para acceder")
         return redirect("userauths:sign-in")   
@@ -69,5 +86,6 @@ def dashboard(request):
     context = {
         "kyc": kyc,
         "account": account,
+        "form": form,
     }
     return render(request, "account/dashboard.html", context)

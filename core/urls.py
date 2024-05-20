@@ -6,6 +6,7 @@ app_name = "core"
 
 urlpatterns = [
     path("", views.index, name="index"),
+    #path("", views.home, name="home")
     
     #Transfers
     path("search-account/", transfer.search_users_account_number, name="search-account"),

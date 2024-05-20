@@ -38,12 +38,12 @@
                         <div class="sidebar-icon">
                             <img src="{% static 'assets1/images/icon/menu.png' %}" alt="icon">
                         </div>
-                        <!-- <form method="POST" class="flex-fill">
+                        <form method="POST" class="flex-fill">
                             <div class="form-group d-flex align-items-center">
                                 <img src="{% static 'assets1/images/icon/search.png' %}" alt="icon">
                                 <input type="text" placeholder="Type to search...">
                             </div>
-                        </form> -->
+                        </form>
                         <div class="dashboard-nav">
                             <div class="single-item language-area">
                             </div>
@@ -132,7 +132,7 @@
                                 <div class="main-area user-content">
                                     <div class="head-area d-flex align-items-center">
                                         <div class="profile-img">
-                                            {% if request.user.kyc.image.url %}
+                                             {% if request.user.kyc.image.url %}
                                             <img style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" src="{{ request.user.kyc.image.url }}" alt="image">
                                             {% else %}
                                             <img src="{% static 'assets1/images/default.jpg' %}"  style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" alt="">

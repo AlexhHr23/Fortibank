@@ -64,7 +64,7 @@ class CreditCard(models.Model):
     
     name = models.CharField(max_length=100)
     number = models.IntegerField()
-    mounth = models.IntegerField()
+    month = models.IntegerField()
     year = models.IntegerField()
     cvv = models.IntegerField()
     
