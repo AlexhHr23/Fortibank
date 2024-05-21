@@ -113,7 +113,7 @@
                                                                                         <button type="button" class="reg btn btn-success w-100 mb-2" data-bs-toggle="modal" data-bs-target="#withdraw_fund">
                                                                                             Withdraw
                                                                                         </button>  
-                                                                                           <a href="" class="reg btn btn-danger w-100 mb-2">
+                                                                                           <a href="{% url 'core:delete-card' credit_card.card_id %}" class="reg btn btn-danger w-100 mb-2">
                                                                                             Delete Card
                                                                                         </a> 
                                                                                 </div>    
@@ -171,7 +171,7 @@
                                     <div class="col-md-12">
                                         <div class="single-input">
                                             <label for="month">Paylio Available Balance</label>
-                                            <input type="text" id="month" value="${{ account.account_balance|floatformat:'0.2f' }}">
+                                            <input type="text" id="month" value="${{ account.account_balance|floatformat:'0.2f'}}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
