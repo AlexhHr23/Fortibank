@@ -83,7 +83,7 @@
                                                                         <ul class="payment-details">
                                                                             <li>
                                                                                 <span>Current Amount</span>
-                                                                                <span>${{credit_card.amount|intcomma}}</span>
+                                                                                <span>${{credit_card.amount|floatformat:"0.2f"}}</span>
                                                                             </li>
                                                                             <li>
                                                                                 <span>Name of holder</span>
@@ -153,7 +153,7 @@
                                 <h6>Fund Credit Card</h6>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                             </div>
-                            <form action="" method="POST">
+                            <form action="{% url 'core:fund-credit-card' credit_card.card_id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="row justify-content-center">
                                     <div class="col-md-12">
@@ -171,7 +171,7 @@
                                     <div class="col-md-12">
                                         <div class="single-input">
                                             <label for="month">Paylio Available Balance</label>
-                                            <input type="text" id="month" value="${{ account.account_balance|intcomma }}">
+                                            <input type="text" id="month" value="${{ account.account_balance|floatformat:'0.2f' }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -210,7 +210,7 @@
                                 <h6>Withdraw from Card</h6>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                             </div>
-                            <form action="" method="POST">
+                            <form action="{% url 'core:withdraw-fund' credit_card.card_id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="row justify-content-center">
                                     
