@@ -1,5 +1,5 @@
 from django.urls import path
-from core import views, transfer, transaction, payment_request
+from core import views, transfer, transaction, payment_request, credit_card
 from core import transaction
 
 app_name = "core"
@@ -32,6 +32,10 @@ urlpatterns = [
      path("settlement-confirmation/<account_number>/<transaction_id>/", payment_request.settlement_confirmation, name="settlement-confirmation"),
      path("settlement-processing/<account_number>/<transaction_id>/", payment_request.settlement_processing, name="settlement-processing"),
      path("settlement-completed/<account_number>/<transaction_id>/", payment_request.settlement_completed, name="settlement-completed"),
-     path("delete-request/<account_number>/<transaction_id>/", payment_request.deletePaymentRequest, name="delete-request")
+     path("delete-request/<account_number>/<transaction_id>/", payment_request.deletePaymentRequest, name="delete-request"),
+     
+     
+     # Credit Card URLS
+     path("card/<card_id>", credit_card.card_detail, name="card-detail")
      
 ]
