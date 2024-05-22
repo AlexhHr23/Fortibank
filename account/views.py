@@ -4,7 +4,7 @@ from account.forms import KYCForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from core.forms import CrediCardForm
-from core.models import CreditCard
+from core.models import CreditCard, Transaction
 
 
 
@@ -64,7 +64,17 @@ def dashboard(request):
             kyc = KYC.objects.get(user=request.user)
         except:
               messages.warning(request, "Necesitas enviar tu formulario")
-              return redirect("account:kyc-reg")   
+              return redirect("account:kyc-reg")
+          
+        recent_transfer = Transaction.objects.filter(sender=request.user, transaction_type="transfer", status="completed").order_by("-id")[:1]
+        recent_recieved_transfer = Transaction.objects.filter(reciever=request.user, transaction_type="transfer").order_by("-id")[:1]
+
+
+        sender_transaction = Transaction.objects.filter(sender=request.user, transaction_type="transfer").order_by("-id")
+        reciever_transaction = Transaction.objects.filter(reciever=request.user, transaction_type="transfer").order_by("-id")
+
+        request_sender_transaction = Transaction.objects.filter(sender=request.user, transaction_type="request")
+        request_reciever_transaction = Transaction.objects.filter(reciever=request.user, transaction_type="request")   
 
         account = Account.objects.get(user=request.user)
         credit_card = CreditCard.objects.filter(user=request.user).order_by("-id")
@@ -90,5 +100,12 @@ def dashboard(request):
         "account": account,
         "form": form,
         "credit_card": credit_card,
+        "sender_transaction":sender_transaction,
+        "reciever_transaction":reciever_transaction,
+
+        'request_sender_transaction':request_sender_transaction,
+        'request_reciever_transaction':request_reciever_transaction,
+        'recent_transfer':recent_transfer,
+        'recent_recieved_transfer':recent_recieved_transfer,
     }
     return render(request, "account/dashboard.html", context)
