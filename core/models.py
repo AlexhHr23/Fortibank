@@ -14,15 +14,14 @@ TRANSACTION_TYPE = (
 
 
 TRANSACTION_STATUS = (
-    ("failed", "failed"),
-    ("completed", "completed"),
-    ("pending", "pending"),
-    ("processing", "processing"),
-    ("requested", "requested"),
-    ("request_send", "requested sent"),
-    ("request_settled", "request settled"),
-    ("request_processing", "request processing"),
-    
+    ("failed", "fallido"),
+    ("completed", "completado"),
+    ("pending", "pendiente"),
+    ("processing", "procesando"),
+    ("requested", "solicitado"),
+    ("request_send", "solicitud enviada"),
+    ("request_settled", "solicitud resuelta"),
+    ("request_processing", "solicitud en proceso")
 )
 
 CARD_TYPE = (
