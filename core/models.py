@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from userauths.models import User
 from account.models import Account
@@ -74,6 +75,28 @@ class CreditCard(models.Model):
     card_status = models.BooleanField(default=True)
     
     daet = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.user}"
+    
+    
+
+class Evidence(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='evidences/')
+    reviewed = models.BooleanField(default=False)
+    validated = models.BooleanField(default=False)
+    upload_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.upload_date}"
+    
+class Ticket(models.Model):
+    id = models.UUIDField(primary_key=True, unique=True, default = uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    evidence = models.OneToOneField(Evidence, on_delete=models.CASCADE)
+    ticket_number = ShortUUIDField(unique=True, length=4, max_length=4, prefix="217", alphabet="1234567890")
+    date_issue = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return f"{self.user}"

@@ -1,5 +1,6 @@
 from django import forms
-from core.models import CreditCard
+from account.models import KYC
+from core.models import CreditCard, Evidence
 
 
 class CrediCardForm(forms.ModelForm):
@@ -13,3 +14,8 @@ class CrediCardForm(forms.ModelForm):
     class Meta:
         model = CreditCard
         fields = ['name','number','month', 'year', 'cvv', 'card_type']
+        
+class EvidenceForm(forms.ModelForm):
+    class Meta:
+        model = Evidence
+        fields = ['photo']
