@@ -19,7 +19,7 @@
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header justify-content-between">
-                                                            <h5>Credit Card</h5>
+                                                            <h5>Tarjeta de crédito</h5>
                                                             <a href="{% url 'account:dashboard' %}"><i class="material-symbols-outlined">Regresar</i></a>
                                                         </div>
                                                         <div class="main-content">
@@ -79,26 +79,26 @@
                                                                 </div>
                                                                 <div class="col-sm-7">
                                                                     <div class="right-area">
-                                                                        <h6>Credit Card Details</h6>
+                                                                        <h6>Detalles de tarjeta de crédito</h6>
                                                                         <ul class="payment-details">
                                                                             <li>
-                                                                                <span>Current Amount</span>
+                                                                                <span>Cantidad actual</span>
                                                                                 <span>${{credit_card.amount|floatformat:"0.2f"}}</span>
                                                                             </li>
                                                                             <li>
-                                                                                <span>Name of holder</span>
+                                                                                <span>Nombre del titular</span>
                                                                                 <span>{{credit_card.name|title}}</span>
                                                                             </li>
                                                                             <li>
-                                                                                <span>Card Type</span>
+                                                                                <span>Tipo de tarjeta</span>
                                                                                 <span>{{credit_card.card_type|upper}}</span>
                                                                             </li>
                                                                             <li>
-                                                                                <span>Card Number</span>
+                                                                                <span>Número de tarjeta</span>
                                                                                 <span>{{credit_card.number}}</span>
                                                                             </li>
                                                                             <li>
-                                                                                <span>Expiry Month & Year</span>
+                                                                                <span>Mes y año de vencimiento</span>
                                                                                 <span>{{credit_card.month}}/{{credit_card.year}}</span>
                                                                             </li>
                                                                             <li>
@@ -108,13 +108,13 @@
                                                                             <li>
                                                                                 <div class="">
                                                                                         <button type="button" class="reg btn btn-primary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#addcardMod">
-                                                                                            Fund Card
+                                                                                            Tarjeta de fondos
                                                                                         </button>  
                                                                                         <button type="button" class="reg btn btn-success w-100 mb-2" data-bs-toggle="modal" data-bs-target="#withdraw_fund">
-                                                                                            Withdraw
+                                                                                            Retirar
                                                                                         </button>  
                                                                                            <a href="{% url 'core:delete-card' credit_card.card_id %}" class="reg btn btn-danger w-100 mb-2">
-                                                                                            Delete Card
+                                                                                            Eliminar tarjeta
                                                                                         </a> 
                                                                                 </div>    
                                                                                
