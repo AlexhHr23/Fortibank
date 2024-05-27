@@ -42,6 +42,7 @@ urlpatterns = [
      path("delete-card/<card_id>", credit_card.delete_card, name="delete-card"),
      
      # Lottery URLS
-     path("upload-evidence", lottery.upload_evidence, name ="upload-evidence" )
+     path("upload-evidence/", lottery.upload_evidence, name ="upload-evidence" ),
+     path("evidence-completed/", lottery.evidence_completed, name="evidence-completed"),
      
 ]

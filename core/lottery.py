@@ -26,7 +26,7 @@ def upload_evidence(request):
     
     if evidence and evidence.validated:
         messages.error(request, 'Tu evidencia ya ha sido validada y no puedes subir otra.')
-        return redirect('confirmacion_evidencia')
+        return redirect('core:evidence-completed')
 
     if request.method == 'POST':
         form = EvidenceForm(request.POST, request.FILES, instance=evidence)
@@ -50,4 +50,8 @@ def upload_evidence(request):
     }
     
     return render(request, 'lottery/upload_evidence.html', context)
+
+@login_required
+def evidence_completed(request):
+    return render(request, 'lottery/evidence-completed.html')
     
