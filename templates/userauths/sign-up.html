@@ -13,9 +13,9 @@
                     </div>
                     <div class="col-xl-5">
                         <div class="section-text text-center">
-                            <h5 class="sub-title">Account</h5>
-                            <h2 class="title">Welcome to Paylio</h2>
-                            <p class="dont-acc">Already have an account? <a href="{% url 'userauths:sign-in' %}">Login</a></p>
+                            <h5 class="sub-title">Cuenta</h5>
+                            <h2 class="title">Bienvenido a Fortia</h2>
+                            <p class="dont-acc">¿Ya tienes cuenta? <a href="{% url 'userauths:sign-in' %}">Inicia sesión</a></p>
                             
                         </div>
                         <form method="POST">
@@ -39,18 +39,22 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="single-input">
+                                        <label for="">Nombre de usuario</label>
                                         {{form.username}}
                                     </div>
                                     <div class="single-input">
+                                        <label for="">Correo</label>
                                         {{form.email}}
                                     </div>
                                     <div class="single-input">
+                                        <label for="">Contraseña</label>
                                         {{form.password1}}
                                     </div>
                                     <div class="single-input">
+                                        <label for="">Confirmar contraseña</label>
                                         {{form.password2}}
                                     </div>
-                                    <button class="cmn-btn w-100" type="submit">Sign Up</button>
+                                    <button class="cmn-btn w-100" type="submit">Registrar</button>
                                 </div>
                             </div>
                         </form>

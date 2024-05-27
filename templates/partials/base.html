@@ -27,21 +27,32 @@
     </div>
     <div class="preloader" id="preloader"></div>
     <a href="javascript:void(0)" class="scrollToTop"><i class="fas fa-angle-double-up"></i></a>
-    <!-- header-section start -->
     <header class="header-section">
-        <div class="right-area header-action d-flex align-items-center max-un">
-            {% if request.user.is_authenticated %}
-            <a href="/admin" class="login cmn-btn">Administrador</a>
-            <a href="{% url 'userauths:sign-out' %}" class="login cmn-btn">Cerrar Sesión</a>
-            {% else %}
-            <!-- <a href="{% url 'userauths:sign-in' %}" class="login">Iniciar sesión <i class="fas fa-caret-right"></i></a>
-            <a href="{% url 'userauths:sign-up' %}" class="cmn-btn">Sign Up
-                <i class="fas fa-caret-right"></i>
-            </a> -->
-            {% endif %}
-            <!-- alert end -->
+        <div class="overlay">
+            <div class="container">
+                <div class="row d-flex header-area">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="{% static 'assets1/images/Forti bank.png'%}" class="logo" alt="logo" />
+                        </a>
+                        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" id="navbar-content">
+                            <div class="right-area header-action d-flex align-items-center max-un">
+                                <a href="{% url 'userauths:sign-in' %}" class="login">Iniciar sesión</a>
+                                <a href="{% url 'userauths:sign-up' %}" class="cmn-btn"
+                                    >Registrarse
+                                    <i class="icon-d-right-arrow-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
         </div>
     </header>
+    <!-- header-section end -->
 
     {% block content %}
 

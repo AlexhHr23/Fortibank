@@ -103,34 +103,30 @@
                                     <img src="{% static 'assets1/images/owner-profile.png' %}" alt="image">
                                 </div>
                                 <div class="name-area">
-                                    <h6>Alfred Davis</h6>
-                                    <p class="active-status">Active</p>
+                                    <h6></h6>
+                                    <p class="active-status">{{account.status}}</p>
                                 </div>
                             </div>
                             <div class="owner-info">
                                 <ul>
                                     <li>
                                         <p>Account ID:</p>
-                                        <span class="mdr">Rex49484</span>
+                                        <span class="mdr">{{ account.account_number }}</span>
                                     </li>
                                     <li>
                                         <p>Joined:</p>
-                                        <span class="mdr">Aug 25,2021</span>
+                                        <span class="mdr">{{ account.date|date }}</span>
                                     </li>
                                     <li>
-                                        <p>Confirm status:</p>
-                                        <span class="mdr">80%</span>
+                                        <p>Pin:</p>
+                                        <span class="mdr">{{ account.pin_number }}</span>
                                     </li>
                                 </ul>
                             </div>
                             <div class="owner-action">
                                 <a href="javascript:void(0)">
                                     <img src="{% static 'assets1/images/icon/logout.png' %}" alt="image">
-                                    Logout
-                                </a>
-                                <a href="javascript:void(0)" class="delete">
-                                    <img src="{% static 'assets1/images/icon/delete-2.png' %}" alt="image">
-                                    Delete Account
+                                    Salir
                                 </a>
                             </div>
                         </div>
@@ -141,7 +137,7 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="account-tab" data-bs-toggle="tab"
                                         data-bs-target="#account" type="button" role="tab" aria-controls="account"
-                                        aria-selected="true">KYC registration form</button>
+                                        aria-selected="true">Formulario de registro</button>
                                 </li>
                             </ul>
                             <div class="tab-content mt-40">
@@ -157,7 +153,7 @@
                                                         alt="image">
                                                 </div>
                                                 <div class="instraction">
-                                                    <h6>Your Avatar</h6>
+                                                    <h6>Tu avatar</h6>
                                                     <!-- <p>Profile picture size: 400px x 400px</p> -->
                                                 </div>
                                             </div>
@@ -205,11 +201,13 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="single-input">
+                                            
                                                     {{form.gender}}
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="single-input">
+                        
                                                     {{form.marrital_status}}
                                                 </div>
                                             </div>

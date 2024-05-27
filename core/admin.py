@@ -8,7 +8,6 @@ from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
 import io
 from django.http import FileResponse, HttpResponse, HttpResponseRedirect
-from django.core.exceptions import ObjectDoesNotExist
 
 
 class TransactionAdmin(admin.ModelAdmin):
@@ -26,9 +25,14 @@ class EvidenceAdmin(admin.ModelAdmin):
 
     def open_image_preview(self, obj):
         if obj.photo:
-            return format_html('<a href="#" class="open-image-preview" data-image-url="{}"><i class="fas fa-eye"></i></a>'.format(obj.photo.url))
+            return format_html(
+                '<a href="#" class="open-image-preview" data-image-url="{}">'
+                '<i class="fas fa-eye"></i></a>',
+                obj.photo.url
+            )
         return "-"
     open_image_preview.short_description = 'Photo Preview'
+
 
     def validate_evidence(self, request, queryset):
         tickets = []

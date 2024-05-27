@@ -17,6 +17,12 @@
                             <h5 class="sub-title">Bienvenido</h5>
                             <h2 class="title">Inicia sesión para continuar</h2>
                         </div>
+
+                        {% if messages %}
+                        {% for message in messages %}
+                            <strong>{{ message }}</strong>
+                        {% endfor %}
+                    {% endif %}
                         <form method="POST">
                             {% csrf_token %}
                             <div class="row">
@@ -33,9 +39,6 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="forgot-pass mt-30 text-center">
-                            <a href="javascript:void(0)">¿Olvidaste tu contraseña?</a>
-                        </div>
                     </div>
                 </div>
             </div>
