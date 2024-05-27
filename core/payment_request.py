@@ -6,7 +6,6 @@ from django.contrib import messages
 from decimal import Decimal
 
 from core.models import Transaction
-from decimal import Decimal
 
 @login_required
 def SearchUserRequest(request):
@@ -15,8 +14,8 @@ def SearchUserRequest(request):
     
     if query:
         account = account.filter(
-            Q(account_number = query)|
-            Q(account_id = query )
+            Q(account_number=query) |
+            Q(account_id=query)
         ).distinct()
         
     context = {
@@ -34,13 +33,22 @@ def AmountRequest(request, account_number):
     return render(request, "payment_request/amount-request.html", context)
 
 def AmountRequestProcess(request, account_number):
-    account = Account.objects.get(account_number=account_number)
+    try:
+        account = Account.objects.get(account_number=account_number)
+    except Account.DoesNotExist:
+        messages.warning(request, "La cuenta no existe")
+        return redirect("core:search-account")
 
     sender = request.user
-    reciever = account.user
+    receiver = account.user
 
     sender_account = request.user.account
-    reciever_account = account
+    receiver_account = account
+
+    # Verificar si el usuario está intentando hacer una solicitud de pago a su propia cuenta
+    if sender == receiver:
+        messages.warning(request, "No puedes solicitar un pago a tu propia cuenta")
+        return redirect("core:amount-request", account.account_number)
 
     if request.method == "POST":
         amount = request.POST.get("amount-request")
@@ -52,10 +60,10 @@ def AmountRequestProcess(request, account_number):
             description=description,
 
             sender=sender,
-            reciever=reciever,
+            receiver=receiver,
 
             sender_account=sender_account,
-            reciever_account=reciever_account,
+            receiver_account=receiver_account,
 
             status="request_processing",
             transaction_type="request"
@@ -72,8 +80,8 @@ def AmountRequestConfirmation(request, account_number, transaction_id):
     transaction = Transaction.objects.get(transaction_id=transaction_id)
 
     context = {
-        "account":account,
-        "transaction":transaction,
+        "account": account,
+        "transaction": transaction,
     }
     return render(request, "payment_request/amount-request-confirmation.html", context)
 
@@ -82,26 +90,25 @@ def AmountRequestFinalProcess(request, account_number, transaction_id):
     account = Account.objects.get(account_number=account_number)
     transaction = Transaction.objects.get(transaction_id=transaction_id)
     
-    
     if request.method == "POST":
         pin_number = request.POST.get("pin-number")
         if pin_number == request.user.account.pin_number:
             transaction.status = "request_send"
             transaction.save()
             
-            messages.success(request,"Su solicitud de pago ha sido enviada exitosamente")
+            messages.success(request, "Su solicitud de pago ha sido enviada exitosamente")
             return redirect("core:amount-request-completed", account.account_number, transaction.transaction_id)
     else:
-        messages.warning(request,"Ocurrio un error. Intentalo más tarde")
+        messages.warning(request, "Ocurrio un error. Intentalo más tarde")
         return redirect("account:dashboard")
-    
-def RequestCompleted(request,account_number ,transaction_id):
+
+def RequestCompleted(request, account_number, transaction_id):
     account = Account.objects.get(account_number=account_number)
     transaction = Transaction.objects.get(transaction_id=transaction_id)
     
     context = {
-        "account":account,
-        "transaction":transaction,
+        "account": account,
+        "transaction": transaction,
     }
     return render(request, "payment_request/amount-request-completed.html", context)
 
@@ -112,8 +119,8 @@ def settlement_confirmation(request, account_number, transaction_id):
     transaction = Transaction.objects.get(transaction_id=transaction_id)
     
     context = {
-        "account":account,
-        "transaction":transaction,
+        "account": account,
+        "transaction": transaction,
     }
     return render(request, "payment_request/settlement-confirmation.html", context)
 
@@ -149,14 +156,13 @@ def settlement_processing(request, account_number, transaction_id):
         messages.warning(request, "Ocurrio un error")
         return redirect('account:dashboard', account.account_number, transaction.transaction_id)
 
-
-def settlement_completed(request,account_number ,transaction_id):
+def settlement_completed(request, account_number, transaction_id):
     account = Account.objects.get(account_number=account_number)
     transaction = Transaction.objects.get(transaction_id=transaction_id)
     
     context = {
-        "account":account,
-        "transaction":transaction,
+        "account": account,
+        "transaction": transaction,
     }
     return render(request, "payment_request/settlement-completed.html", context)
 
