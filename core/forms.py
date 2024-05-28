@@ -1,6 +1,6 @@
 from django import forms
 from account.models import KYC
-from core.models import CreditCard, Evidence
+from core.models import CreditCard, Evidence, EvidenceWithPersons
 
 
 class CrediCardForm(forms.ModelForm):
@@ -18,4 +18,9 @@ class CrediCardForm(forms.ModelForm):
 class EvidenceForm(forms.ModelForm):
     class Meta:
         model = Evidence
+        fields = ['photo']
+        
+class EvidenceWithPersonsForm(forms.ModelForm):
+    class Meta:
+        model = EvidenceWithPersons
         fields = ['photo']

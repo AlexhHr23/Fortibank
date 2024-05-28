@@ -1,7 +1,7 @@
 import random
 import uuid
 from django.contrib import admin
-from core.models import Ticket, Transaction, CreditCard, Evidence
+from core.models import EvidenceWithPersons, Ticket, Transaction, CreditCard, Evidence
 from django.utils.html import format_html
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
@@ -120,7 +120,20 @@ class EvidenceAdmin(admin.ModelAdmin):
         buffer.seek(0)
 
         return buffer.getvalue()
+    
+class DepositAdmin(admin.ModelAdmin):
+    list_display = ['user', 'view_evidence', 'deposit','validated', 'upload_date', ]
+    list_editable  = ['deposit']
+    list_filter = ['validated']
+
+    def view_evidence(self, obj):
+        return format_html(
+            '<a href="#" class="view-evidence" data-url="{}"><i class="fas fa-eye"></i></a>',
+            obj.photo.url
+        )
+    view_evidence.short_description = "Ver Evidencia"
         
 admin.site.register(Transaction, TransactionAdmin)
 admin.site.register(CreditCard, CredritCardAdmin)
 admin.site.register(Evidence, EvidenceAdmin)
+admin.site.register(EvidenceWithPersons, DepositAdmin)

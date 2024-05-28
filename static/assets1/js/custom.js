@@ -44,3 +44,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const toggleMenu = document.getElementById("toggle-premios");
+    const submenu = document.getElementById("submenu-premios");
+    
+    // Check local storage for menu state
+    if (localStorage.getItem("submenu-premios-open") === "true") {
+        submenu.classList.add("open");
+    }
+
+    toggleMenu.addEventListener("click", function() {
+        submenu.classList.toggle("open");
+        
+        // Save state to local storage
+        if (submenu.classList.contains("open")) {
+            localStorage.setItem("submenu-premios-open", "true");
+        } else {
+            localStorage.setItem("submenu-premios-open", "false");
+        }
+    });
+});

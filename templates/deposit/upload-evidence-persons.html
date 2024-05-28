@@ -1,0 +1,71 @@
+{% extends 'partials/dashboard-base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<section class="dashboard-section body-collapse">
+  <div class="overlay pt-120">
+    <div class="container-fluid">
+      <div class="col-xl-11 col-lg-11 mx-auto">
+        <div class="section-content">
+          <div class="transactions-popup">
+            <div class="container-fluid">
+              <div class="col-lg-12">
+                <div>
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header justify-content-between">
+                        <h5>Adjunta tu evidencia</h5>
+                        <a href="{% url 'account:dashboard' %}">
+                          <i class="material-symbols-outlined">Regresar</i>
+                        </a>
+                      </div>
+                      <div class="modal-body">
+                        <div class="p-3">
+                          <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                              <label for="fileUpload">Sube tu archivo:</label>
+                              {{ form.photo }}
+                            </div>
+                            <div id="image-preview" class="d-none">
+                              <img id="preview" width="200" height="200" style="margin-top: 10px;">
+                            </div>
+                            <button type="submit">Subir evidencia</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  function previewImage(event) {
+    var imageFile = event.target.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      var previewImage = document.getElementById("preview");
+      var imagePreviewContainer = document.getElementById("image-preview");
+
+      if (imageFile) {
+        previewImage.src = e.target.result;
+        imagePreviewContainer.classList.remove("d-none"); // Show image preview container
+      } else {
+        previewImage.src = "";
+        imagePreviewContainer.classList.add("d-none"); // Hide image preview container
+      }
+    };
+
+    reader.readAsDataURL(imageFile);
+  }
+</script>
+
+{% endblock content %}

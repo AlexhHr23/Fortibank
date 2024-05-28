@@ -1,5 +1,5 @@
 from django.urls import path
-from core import lottery, views, transfer, transaction, payment_request, credit_card
+from core import deposit, lottery, views, transfer, transaction, payment_request, credit_card
 from core import transaction
 
 app_name = "core"
@@ -44,5 +44,9 @@ urlpatterns = [
      # Lottery URLS
      path("upload-evidence/", lottery.upload_evidence, name ="upload-evidence" ),
      path("evidence-completed/", lottery.evidence_completed, name="evidence-completed"),
+     
+     # deposit urls
+     path("upload-evidence-persons/", deposit.upload_evidence_persons, name ="upload-evidence-persons" ),
+     path("completed-evidence-persons/", deposit.completed_persons_evidence, name="completed-evidence-persons"),
      
 ]

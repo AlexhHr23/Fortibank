@@ -124,9 +124,12 @@
                                 <div class="profile-area d-flex align-items-center">
                                     <span class="user-profile">
                                         {% if request.user.kyc.image.url %}
-                                            <img style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" src="{{ request.user.kyc.image.url }}" alt="image">
+                                        <img style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"
+                                            src="{{ request.user.kyc.image.url }}" alt="image">
                                         {% else %}
-                                            <img src="{% static 'assets1/images/default.jpg' %}"  style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" alt="">
+                                        <img src="{% static 'assets1/images/default.jpg' %}"
+                                            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"
+                                            alt="">
                                         {% endif %}
                                     </span>
                                     <i class="fa-solid fa-sort-down"></i>
@@ -134,18 +137,21 @@
                                 <div class="main-area user-content">
                                     <div class="head-area d-flex align-items-center">
                                         <div class="profile-img">
-                                             {% if request.user.kyc.image.url %}
-                                            <img style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" src="{{ request.user.kyc.image.url }}" alt="image">
+                                            {% if request.user.kyc.image.url %}
+                                            <img style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;"
+                                                src="{{ request.user.kyc.image.url }}" alt="image">
                                             {% else %}
-                                            <img src="{% static 'assets1/images/default.jpg' %}"  style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" alt="">
+                                            <img src="{% static 'assets1/images/default.jpg' %}"
+                                                style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"
+                                                alt="">
                                             {% endif %}
                                         </div>
                                         <div class="profile-head">
                                             <a href="{% url 'account:account' %}">
                                                 <h6>{{ kyc.full_name }}</h6>
                                             </a>
-                                            <p class="wallet-id"><small>No. de cuenta: {{ request.user.account.account_number }}</small></p>
-                                            <p class="wallet-id"><small>Pin: {{ request.user.account.pin_number }}</small></p>
+                                            <p class="wallet-id"><small>No. de cuenta: {{request.user.account.account_number}}</small></p>
+                                            <p class="wallet-id"><small>Pin: {{ request.user.account.pin_number}}</small></p>
                                         </div>
                                     </div>
                                     <ul>
@@ -156,7 +162,8 @@
                                             <a href="account.html"><i class="fas fa-cog"></i>Settings</a>
                                         </li> -->
                                         <li>
-                                            <a href="{% url 'userauths:sign-out' %}"><i class="fas fa-sign-out"></i>Cerrar sesión</a>
+                                            <a href="{% url 'userauths:sign-out' %}"><i
+                                                    class="fas fa-sign-out"></i>Cerrar sesión</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -168,7 +175,8 @@
                             <i class="fa-solid fa-xmark"></i>
                         </div>
                         <div class="sidebar-logo">
-                            <a href="{% url 'account:dashboard' %}"><img src="{% static 'assets1/images/Forti bank.png' %}" alt="logo"></a>
+                            <a href="{% url 'account:dashboard' %}"><img
+                                    src="{% static 'assets1/images/Forti bank.png' %}" alt="logo"></a>
                         </div>
                         <ul>
                             <li>
@@ -185,7 +193,8 @@
                             </li>
                             <li>
                                 <a href="{% url 'core:search-account' %}">
-                                    <img src="{% static 'assets1/images/icon/pay.png' %}" alt="Pay"> <span>Transferir</span>
+                                    <img src="{% static 'assets1/images/icon/pay.png' %}" alt="Pay">
+                                    <span>Transferir</span>
                                 </a>
                             </li>
                             <li>
@@ -194,32 +203,38 @@
                                     <span>Recibir</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="{% url 'core:upload-evidence' %}">
-                                    <img src="{% static 'assets1/images/icon/crypto.png' %}" alt="Exchange">
-                                    <span>Premios</span>
-                                </a>
-                            </li>
-                           
+                            <ul>
+                                <li>
+                                    <a class="toggle-menu" id="toggle-premios">
+                                        <img src="{% static 'assets1/images/icon/crypto.png' %}" alt="Exchange">
+                                        <span style="margin-right: 10px;">Premios</span>
+                                        <i class="fa-solid fa-angle-down"></i>
+                                    </a>
+                                    <ul class="submenu" id="submenu-premios">
+                                        <li>
+                                            <a href="{% url 'core:upload-evidence' %}">
+                                                <img src="{% static 'assets1/images/icon/crypto.png' %}">
+                                                <span>Rifa</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'core:upload-evidence-persons' %}">
+                                                <img src="{% static 'assets1/images/icon/crypto.png' %}">
+                                                <span>Fortipesos</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>  
                         </ul>
                         <ul class="bottom-item">
-                            <li class="active">
+                            <li>
                                 <a href="{% url 'account:account' %}">
                                     <img src="{% static 'assets1/images/icon/account.png' %}" alt="Account">
                                     <span>Cuenta</span>
                                 </a>
                             </li>
-                            <!-- <li>
-                                <a href="javascript:void(0)">
-                                    <img src="{% static 'assets1/images/icon/support.png' %}" alt="Support">
-                                    <span>Support</span>
-                                </a>
-                            </li> -->
-                            <!-- <li>
-                                <a href="javascript:void(0)">
-                                    <img src="{% static 'assets1/images/icon/quit.png' %}" alt="Quit"> <span>Quit</span>
-                                </a>
-                            </li> -->
+
                         </ul>
                     </div>
                 </div>
@@ -256,6 +271,7 @@
     <script src="{% static 'assets1/js/plugin/wow.min.js' %}"></script>
     <script src="{% static 'assets1/js/plugin/plugin.js' %}"></script>
     <script src="{% static 'assets1/js/main.js' %}"></script>
+    <script src="{% static 'assets1/js/custom.js' %}"></script>
 </body>
 
 </html>
