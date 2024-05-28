@@ -38,20 +38,16 @@ def AmountTransfer(request, account_number):
 
 
 def AmountTransferProcess(request, account_number):
-    try:
-        account = Account.objects.get(account_number=account_number)
-    except Account.DoesNotExist:
-        messages.warning(request, "La cuenta no existe")
-        return redirect("core:search-account")
-
-    sender = request.user  # get the person that is logged in
-    receiver = account.user  # The account of the person that is going to receive the money
+    
+    account = Account.objects.get(account_number=account_number) ## Get the account that the money vould be sent to
+    sender = request.user # get the person that is logged in
+    reciever = account.user ##get the of the  person that is going to reciver the money The account of the person that is going to receive the money
 
     sender_account = request.user.account
     receiver_account = account
 
     # Verificar si el usuario está intentando transferir a su propia cuenta
-    if sender == receiver:
+    if sender == reciever:
         messages.warning(request, "No puedes transferir a tu propia cuenta")
         return redirect("core:amount-transfer", account.account_number)
 
@@ -64,10 +60,10 @@ def AmountTransferProcess(request, account_number):
                 user=request.user,
                 amount=amount,
                 description=description,
-                receiver=receiver,
+                reciever=reciever,
                 sender=sender,
                 sender_account=sender_account,
-                receiver_account=receiver_account,
+                reciever_account=receiver_account,
                 status="processing",
                 transaction_type="transfer",
             )
@@ -75,9 +71,7 @@ def AmountTransferProcess(request, account_number):
 
             # Obtener la identificación de la transacción que se creó
             transaction_id = new_transaction.transaction_id
-            return redirect(
-                "core:transfer-confirmation", account.account_number, transaction_id
-            )
+            return redirect("core:transfer-confirmation", account.account_number, transaction_id)
         else:
             messages.warning(request, "Fondos insuficientes")
             return redirect("core:amount-transfer", account.account_number)

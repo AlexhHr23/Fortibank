@@ -8,6 +8,7 @@ from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
 import io
 from django.http import FileResponse, HttpResponse, HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class TransactionAdmin(admin.ModelAdmin):
@@ -19,19 +20,16 @@ class CredritCardAdmin(admin.ModelAdmin):
     list_display  = ['user', 'amount', 'card_type']
   
 class EvidenceAdmin(admin.ModelAdmin):
-    list_display = ('user', 'open_image_preview', 'reviewed', 'validated', 'upload_date')
+    list_display = ('user', 'view_evidence','reviewed', 'validated', 'upload_date', )
     list_filter = ('reviewed', 'validated')
     actions = ['validate_evidence', 'imprimir_boletos_validados']
 
-    def open_image_preview(self, obj):
-        if obj.photo:
-            return format_html(
-                '<a href="#" class="open-image-preview" data-image-url="{}">'
-                '<i class="fas fa-eye"></i></a>',
-                obj.photo.url
-            )
-        return "-"
-    open_image_preview.short_description = 'Photo Preview'
+    def view_evidence(self, obj):
+        return format_html(
+            '<a href="#" class="view-evidence" data-url="{}"><i class="fas fa-eye"></i></a>',
+            obj.photo.url
+        )
+    view_evidence.short_description = "Ver Evidencia"
 
 
     def validate_evidence(self, request, queryset):

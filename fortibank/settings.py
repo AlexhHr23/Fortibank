@@ -175,4 +175,7 @@ JAZZMIN_SETTINGS = {
     # Copyright on the footer
     "copyright": "AB FORTI - Todos los derechos reservados @ Copyrigth 2024 - Hasta la fecha",
     #"order_with_respect_to": ["core", "userauths", "transactions", "addon", "blog"]
+    
+    "custom_css": "assets1/css/custom.css",
+    "custom_js": "assets1/js/custom.js",
 }

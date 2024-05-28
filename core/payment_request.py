@@ -40,13 +40,13 @@ def AmountRequestProcess(request, account_number):
         return redirect("core:search-account")
 
     sender = request.user
-    receiver = account.user
+    reciever = account.user
 
     sender_account = request.user.account
-    receiver_account = account
+    reciever_account = account
 
     # Verificar si el usuario está intentando hacer una solicitud de pago a su propia cuenta
-    if sender == receiver:
+    if sender == reciever:
         messages.warning(request, "No puedes solicitar un pago a tu propia cuenta")
         return redirect("core:amount-request", account.account_number)
 
@@ -60,10 +60,10 @@ def AmountRequestProcess(request, account_number):
             description=description,
 
             sender=sender,
-            receiver=receiver,
+            reciever=reciever,
 
             sender_account=sender_account,
-            receiver_account=receiver_account,
+            reciever_account=reciever_account,
 
             status="request_processing",
             transaction_type="request"
