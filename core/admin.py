@@ -1,4 +1,5 @@
 import random
+import textwrap
 import uuid
 from django.contrib import admin
 from core.models import EvidenceWithPersons, Ticket, Transaction, CreditCard, Evidence, Account
@@ -97,8 +98,8 @@ class EvidenceAdmin(admin.ModelAdmin):
         c = canvas.Canvas(buffer, pagesize=letter)
         width, height = letter
 
-        boleto_width = 3.5 * inch
-        boleto_height = 2 * inch
+        boleto_width = 2 * inch
+        boleto_height = 3.9 * inch  
         margin = 0.5 * inch
 
         x = margin
@@ -113,9 +114,32 @@ class EvidenceAdmin(admin.ModelAdmin):
             c.rect(x, y, boleto_width, boleto_height)
 
             c.setFont("Helvetica", 10)
-            c.drawString(x + 0.1 * inch, y + boleto_height - 0.3 * inch, f"Nombre del usuario: {boleto.user.username}")
-            c.drawString(x + 0.1 * inch, y + boleto_height - 0.6 * inch, f"Número del boleto: {boleto.ticket_number}")
-            c.drawImage(boleto.evidence.photo.path, x + 0.1 * inch, y + 0.1 * inch, width=3.3 * inch, height=1.2 * inch)
+
+            image_width = 1.8 * inch
+            image_height = 2.8 * inch
+            image_x = x + 0.1 * inch  
+            image_y = y + boleto_height - 3 * inch  
+            c.drawImage(boleto.evidence.photo.path, image_x, image_y, width=image_width, height=image_height)
+
+            text_x = x + 0.1 * inch 
+            text_y = y + 0.65 * inch  
+
+            # Dividir el nombre del usuario en líneas si es necesario
+            max_text_width = boleto_width - 0.2 * inch  
+            nombre_usuario = boleto.user.username
+            lines = textwrap.wrap(nombre_usuario, width=30) 
+
+            for line in lines:
+                if text_y < y + 0.1 * inch:  
+                    break
+                c.drawString(text_x, text_y, line)
+                text_y -= 0.15 * inch  
+
+            # Asegurar que el número del boleto esté siempre visible
+            if text_y < y + 0.1 * inch:
+                text_y = y + 0.1 * inch
+
+            c.drawString(text_x, text_y - 0.25 * inch, f"Número del boleto: {boleto.ticket_number}")
 
             y -= boleto_height + margin
 
