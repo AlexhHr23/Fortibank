@@ -1,7 +1,7 @@
 import random
 import uuid
 from django.contrib import admin
-from core.models import EvidenceWithPersons, Ticket, Transaction, CreditCard, Evidence
+from core.models import EvidenceWithPersons, Ticket, Transaction, CreditCard, Evidence, Account
 from django.utils.html import format_html
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
@@ -9,17 +9,20 @@ from reportlab.pdfgen import canvas
 import io
 from django.http import FileResponse, HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
-
+from decimal import Decimal
 
 class TransactionAdmin(admin.ModelAdmin):
+    list_per_page = 25
     list_editable  = ['amount', 'status','transaction_type','reciever', 'sender']
     list_display  = ['user', 'amount', 'status','transaction_type','reciever', 'sender']
     
 class CredritCardAdmin(admin.ModelAdmin):
+    list_per_page = 25
     list_editable  = ['amount', 'card_type', ]
     list_display  = ['user', 'amount', 'card_type']
   
 class EvidenceAdmin(admin.ModelAdmin):
+    list_per_page = 25
     list_display = ('user', 'view_evidence','reviewed', 'validated', 'upload_date', )
     list_filter = ('reviewed', 'validated')
     actions = ['validate_evidence', 'imprimir_boletos_validados']
@@ -121,10 +124,33 @@ class EvidenceAdmin(admin.ModelAdmin):
 
         return buffer.getvalue()
     
-class DepositAdmin(admin.ModelAdmin):
-    list_display = ['user', 'view_evidence', 'deposit','validated', 'upload_date', ]
-    list_editable  = ['deposit']
-    list_filter = ['validated']
+
+class Save(admin.SimpleListFilter):
+    list_per_page = 25
+    title = 'Saved'
+    parameter_name = 'deposit_filter'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('gt_zero', 'Guardados'),
+            ('le_zero', 'No guardados'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'gt_zero':
+            return queryset.filter(deposit__gt=Decimal('0.00'))
+        elif self.value() == 'le_zero':
+            return queryset.filter(deposit__lte=Decimal('0.00'))
+        return queryset
+    
+
+class EvidenceWithPersonsAdmin(admin.ModelAdmin):
+    list_per_page = 25
+    list_display = ['user', 'view_evidence', 'deposit', 'validated', 'upload_date']
+    list_filter = ['validated', Save]  # Agregar el filtro personalizado
+    list_editable = ['deposit']
+    actions = ['Validar_Depositar']
+    fields = ['user', 'photo', 'deposit', 'validated']
 
     def view_evidence(self, obj):
         return format_html(
@@ -132,8 +158,28 @@ class DepositAdmin(admin.ModelAdmin):
             obj.photo.url
         )
     view_evidence.short_description = "Ver Evidencia"
-        
+    
+    def Validar_Depositar(self, request, queryset):
+        updated = 0
+        for evidence in queryset:
+            if not evidence.validated:
+                deposit_amount = evidence.deposit
+                evidence.validated = True
+                evidence.save()
+
+                # Agregar dinero a la cuenta del usuario asociado a la evidencia
+                account = Account.objects.get(user=evidence.user)
+                account.account_balance += deposit_amount
+                account.save()
+                updated += 1
+
+        if updated > 0:
+            self.message_user(request, f'{updated} evidencias validadas y saldo actualizado.')
+        else:
+            self.message_user(request, 'No se actualizaron evidencias ya que todas estaban validadas.')
+            
+            
 admin.site.register(Transaction, TransactionAdmin)
 admin.site.register(CreditCard, CredritCardAdmin)
 admin.site.register(Evidence, EvidenceAdmin)
-admin.site.register(EvidenceWithPersons, DepositAdmin)
+admin.site.register(EvidenceWithPersons, EvidenceWithPersonsAdmin)
