@@ -105,14 +105,26 @@ class EvidenceAdmin(admin.ModelAdmin):
         boleto_height = 3.9 * inch  
         margin = 0.5 * inch
     
+        # Definir el número de columnas
+        num_columns = 3
+        column_width = (width - 2 * margin) / num_columns
+        column_height = boleto_height + margin
+        
         x = margin
         y = height - boleto_height - margin
     
-        for boleto in boletos:
+        for i, boleto in enumerate (boletos):
+            col = i % num_columns
+            row = i // num_columns
+    
+             # Calcular la posición x e y para cada boleto
+            x = margin + col * column_width
+            y = height - (row + 1) * column_height - margin
+
             if y < margin:
                 c.showPage()
-                y = height - boleto_height - margin
-    
+                y = height - column_height - margin
+            
             c.setLineWidth(1)
             c.rect(x, y, boleto_width, boleto_height)
     
@@ -167,7 +179,7 @@ class EvidenceAdmin(admin.ModelAdmin):
     
             c.drawString(text_x, text_y - 0.1 * inch, f"Número del boleto: {boleto.ticket_number}")
     
-            y -= boleto_height + margin
+            
     
         c.save()
         buffer.seek(0)
