@@ -150,8 +150,10 @@ class EvidenceAdmin(admin.ModelAdmin):
     
             # Asegurar que haya espacio entre el nombre completo y la empresa
             if text_y < y + 0.1 * inch:
-                text_y = y + 0.1 * inch
+                text_y = y + 0.2 * inch
     
+            text_y -= 0.1 * inch
+            
             # Imprimir el nombre de la empresa
             for line in lines_company_name:
                 if text_y < y + 0.1 * inch:  
@@ -163,7 +165,7 @@ class EvidenceAdmin(admin.ModelAdmin):
             if text_y < y + 0.1 * inch:
                 text_y = y + 0.1 * inch
     
-            c.drawString(text_x, text_y - 0.25 * inch, f"Número del boleto: {boleto.ticket_number}")
+            c.drawString(text_x, text_y - 0.1 * inch, f"Número del boleto: {boleto.ticket_number}")
     
             y -= boleto_height + margin
     
