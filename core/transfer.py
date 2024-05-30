@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from account.models import Account
+from account.models import KYC, Account
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib import messages
@@ -89,9 +89,10 @@ def TransferConfirmation(request, account_number, transaction_id):
     except (Account.DoesNotExist, Transaction.DoesNotExist):
         messages.warning(request, "La transacción no existe.")
         return redirect("account:account")
+
     context = {
         "account": account,
-        "transaction": transaction
+        "transaction": transaction,
     }
     return render(request, "transfer/transfer-confirmation.html", context)
 

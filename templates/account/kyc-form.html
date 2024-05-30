@@ -189,20 +189,18 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="single-input">
-                                                    <label for="fName">Fax</label>
-                                                    {{form.fax}}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="single-input">
                                                     <label for="fName">Fecha de nacimiento</label>
                                                    {{form.date_of_birth}}
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="single-input">
-                                            
                                                     {{form.gender}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="single-input">
+                                                    {{form.company}}
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -211,12 +209,7 @@
                                                     {{form.marrital_status}}
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="single-input">
-                                                    {{form.identity_type}}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6" style="padding-top: 50px;">
+                                            <!-- <div class="col-md-6" style="padding-top: 50px;">
                                                 <label for="fname">Seleccionar imagen de identidad</label>
                                                 <div class="single-input">
                                                     {{form.identity_image}}
@@ -225,16 +218,7 @@
                                                     {% endif %}
                                                         
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6" style="padding-top: 50px;">
-                                                <label for="fname">Seleccionar imagen de la firma</label>
-                                                <div class="single-input">
-                                                    {{form.signature}}
-                                                    {% if kyc.signature.url %}
-                                                        <img src="{{ kyc.signature.url}}" style="width: 100%; height: 200px; border-radius: 10px; object-fit:cover; padding-top: 10px" alt="">    
-                                                    {% endif %}
-                                                </div>
-                                            </div>
+                                            </div> -->
                                             <br><br>
 
 

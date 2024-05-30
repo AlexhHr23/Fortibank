@@ -6,18 +6,18 @@ class DateInput(forms.DateInput):
     input_type = 'date'
     
 class KYCForm(forms.ModelForm):
-    identity_image = ImageField(widget=FileInput)
+    #identity_image = ImageField(widget=FileInput)
     image = ImageField(widget=FileInput)
-    signature = ImageField(widget=FileInput)
+    #signature = ImageField(widget=FileInput)
     
     class Meta: 
         model = KYC
-        fields = [ 'full_name', 'image', 'marrital_status', 'gender', 'identity_type', 'identity_image', 'date_of_birth', 'signature', 'state', 'city', 'mobile', 'fax']
+        fields = [ 'full_name', 'image', 'marrital_status', 'gender', 'date_of_birth','state', 'city', 'mobile', 'company']
         widgets = {
-            "full_name": forms.TextInput(attrs={"placeholder": "Full Name"}),
-            "mobile": forms.TextInput(attrs={"placeholder": "Mobile"}), 
-            "fax": forms.TextInput(attrs={"placeholder": "Fax Number"}), 
-            "state": forms.TextInput(attrs={"placeholder": "State"}), 
-            "city": forms.TextInput(attrs={"placeholder": "City"}), 
+            "full_name": forms.TextInput(attrs={"placeholder": "Nombre Completo"}),
+            "mobile": forms.TextInput(attrs={"placeholder": "Número de telefono"}), 
+            #"fax": forms.TextInput(attrs={"placeholder": "Número de fax"}), 
+            "state": forms.TextInput(attrs={"placeholder": "Estado"}), 
+            "city": forms.TextInput(attrs={"placeholder": "Ciudad"}), 
             'date_of_birth':DateInput
         }

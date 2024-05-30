@@ -21,12 +21,19 @@ GENDER = (
     ("other", "Otro")
 )
 
-
-IDENTITY_TYPE = (
-    ("national_id_card", "INE"),
-    ("drivers_licence", "Licencia de conducir"),
-    ("international_passport", "Pasaporte")
+COMPANY = (
+    ("AB FORTI", "AB FORTI"),
+    ("INNOVET", "INNOVET"),
+    ("UPPER LOGISTICS", "UPPER LOGISTICS"),
+    ("BE EXEN", "BE EXEN")
 )
+
+
+# IDENTITY_TYPE = (
+#     ("national_id_card", "INE"),
+#     ("drivers_licence", "Licencia de conducir"),
+#     ("international_passport", "Pasaporte")
+# )
 
 
 def user_directory_path(instance, filename):
@@ -63,10 +70,11 @@ class KYC(models.Model):
     #nationality = models.CharField(max_length=100)
     marrital_status = models.CharField(choices=MARITAL_STATUS, max_length=40)
     gender = models.CharField(choices=GENDER, max_length=40)
-    identity_type = models.CharField(choices=IDENTITY_TYPE, max_length=140)
-    identity_image = models.ImageField(upload_to="kyc", null=True, blank=True)
+    #identity_type = models.CharField(choices=IDENTITY_TYPE, max_length=140)
+    #identity_image = models.ImageField(upload_to="kyc", null=True, blank=True)
     date_of_birth = models.DateTimeField(auto_now_add=False)
-    signature = models.ImageField(upload_to="kyc")
+    #signature = models.ImageField(upload_to="kyc")
+    company = models.CharField(choices=COMPANY, max_length=50, default="AB FORTI")
     
     #address
     state = models.CharField(max_length=100)
@@ -74,7 +82,7 @@ class KYC(models.Model):
     
     #Contact Detail
     mobile = models.CharField(max_length=1000)
-    fax = models.CharField(max_length=1000)
+    #fax = models.CharField(max_length=1000)
     date = models.DateTimeField(auto_now_add=True)
     
     
