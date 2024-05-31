@@ -95,30 +95,30 @@ def download_ticket(request):
     text_x = x + 0.1 * inch 
     text_y = y + 0.65 * inch  
 
-    # Obtener el nombre completo y el nombre de la empresa del modelo KYC
+    # Obtener el nombre de usuario y el nombre de la empresa del modelo KYC
+    username = user.username
     try:
-        kyc_info = user.kyc  # Asumiendo que existe una relación OneToOne entre User y KYC
-        full_name = kyc_info.full_name
-        company_name = kyc_info.company
+        company_name = user.kyc.company
     except KYC.DoesNotExist:
-        full_name = "Nombre no disponible"
         company_name = "Empresa no disponible"
 
-    # Dividir el nombre completo y el nombre de la empresa en líneas si es necesario
+    # Dividir el nombre de usuario y el nombre de la empresa en líneas si es necesario
     max_text_width = boleto_width - 0.2 * inch  
-    lines_full_name = textwrap.wrap(full_name, width=30) 
+    lines_username = textwrap.wrap(username, width=30) 
     lines_company_name = textwrap.wrap(f"Empresa: {company_name}", width=30)
 
-    # Imprimir el nombre completo
-    for line in lines_full_name:
+    # Imprimir el nombre de usuario
+    for line in lines_username:
         if text_y < y + 0.1 * inch:  
             break
         c.drawString(text_x, text_y, line)
         text_y -= 0.15 * inch  
 
-    # Asegurar que haya espacio entre el nombre completo y la empresa
+    # Asegurar que haya espacio entre el nombre de usuario y la empresa
     if text_y < y + 0.1 * inch:
-        text_y = y + 0.1 * inch
+        text_y = y + 0.2 * inch
+
+    text_y -= 0.1 * inch
 
     # Imprimir el nombre de la empresa
     for line in lines_company_name:
@@ -131,9 +131,7 @@ def download_ticket(request):
     if text_y < y + 0.1 * inch:
         text_y = y + 0.1 * inch
 
-    c.drawString(text_x, text_y - 0.25 * inch, f"Número del boleto: {ticket.ticket_number}")
-
-    y -= boleto_height + margin
+    c.drawString(text_x, text_y - 0.1 * inch, f"Número del boleto: {ticket.ticket_number}")
 
     c.save()
     buffer.seek(0)
@@ -143,6 +141,8 @@ def download_ticket(request):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="boleto_{ticket.ticket_number}.pdf"'
     return response
+
+
 
 @login_required
 def evidence_completed(request):

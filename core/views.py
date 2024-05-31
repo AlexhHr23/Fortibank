@@ -1,12 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
-
 # def index(request):
+#     if request.user.is_authenticated:
+#         return redirect("account:dashboard")
 #     return render(request, "userauths/sign-in.html")
-
-def index(request):
-    return render(request, "userauths/sign-in.html")
 
 def contact(request):
     return render(request, "core/contact.html")

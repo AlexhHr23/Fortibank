@@ -6,7 +6,7 @@ from userauths import views
 app_name = "core"
 
 urlpatterns = [
-    path("", views.LoginView, name="index"),
+    path("user/sign-in", views.LoginView, name="sign-in"),
     
     #Transfers
     path("search-account/", transfer.search_users_account_number, name="search-account"),
