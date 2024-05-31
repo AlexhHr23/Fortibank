@@ -29,26 +29,27 @@
                             </div>
                         {% endif %}
                         
-                        <form method="POST">
+                        <form id="registerForm" method="POST">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-12">
                                     <div class="single-input">
-                                        <label for="">Nombre de usuario</label>
-                                        {{ form.username }}
+                                        <label for="username">Nombre de usuario</label>
+                                        <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
                                     </div>
                                     <div class="single-input">
-                                        <label for="">Número de telefono</label>
-                                        {{ form.phone_number }}
+                                        <label for="phone_number">Número de telefono</label>
+                                        <input type="text" id="phone_number" name="phone_number" placeholder="Teléfono" required>
+                                        <p id="phoneError" style="color: red; display: none;">Por favor ingrese solo números.</p>
                                     </div>
                                     <div class="single-input">
-                                        <label for="">Contraseña</label>
-                                        {{ form.password1 }}
+                                        <label for="password1">Contraseña</label>
+                                        <input type="password" id="password1" name="password1" placeholder="Contraseña" required>
                                         <p style="opacity: 0.7;">La contraseña debe contener 8 dígitos incluyendo números y letras</p>
                                     </div>
                                     <div class="single-input">
-                                        <label for="">Confirmar contraseña</label>
-                                        {{ form.password2 }}
+                                        <label for="password2">Confirmar contraseña</label>
+                                        <input type="password" id="password2" name="password2" placeholder="Confirmar contraseña" required>
                                     </div>
                                     <button class="cmn-btn w-100" type="submit">Registrar</button>
                                 </div>
@@ -60,4 +61,15 @@
         </div>
     </section>
     <!-- Login Reg end -->
- {% endblock content %}
+
+    <!-- Agregar script de JavaScript para la validación -->
+    <script>
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+        var phoneNumber = document.getElementById("phone_number").value;
+        if (!/^\d+$/.test(phoneNumber)) {
+            document.getElementById("phoneError").style.display = "block";
+            event.preventDefault(); // Evitar que se envíe el formulario si la validación falla
+        }
+    });
+    </script>
+{% endblock content %}
