@@ -80,7 +80,7 @@
                                                 <img style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;" src="{{ kyc.image.url }}" alt="image">
                                             </div>
                                             <div class="instraction">
-                                                <h6>{{kyc.full_name|title}}</h6>
+                                                <h6>{{user.username|title}}</h6>
                                                 <p>Tu saldo: {{ account.account_balance|floatformat:"0.2f"}}</p>
                                                 <!-- <p>Profile picture size: 400px x 400px</p> -->
                                             </div>
@@ -89,46 +89,28 @@
                                     </div>
                                     <form action="#">
                                         <div class="row justify-content-center">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="single-input">
                                                     <label for="fName">Nombre</label>
-                                                    <input type="text" id="fName" placeholder="Alfred" value="{{kyc.full_name|title}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="single-input">
-                                                    <label for="fName">Correo electrónico</label>
-                                                    <input type="text" id="fName" placeholder="Alfred" value="{{kyc.user.email}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="single-input">
-                                                    <label for="fName">Genero</label>
-                                                    <input type="text" id="fName" placeholder="Alfred" value="{{kyc.gender|title}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="single-input">
-                                                    <label for="fName">Estado civil</label>
-                                                    <input type="text" id="fName" placeholder="Alfred" value="{{kyc.marrital_status|title}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="single-input">
-                                                    <label for="fName">Fecha de nacimiento</label>
-                                                    <input type="text" id="fName" placeholder="Alfred" value="{{kyc.date_of_birth|date:'d M, Y'}}">
+                                                    <input type="text" id="fName" placeholder="Alfred" value="{{user.username|title}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="single-input">
                                                     <label for="fName">Numero de teléfonico</label>
-                                                    <input type="text" id="fName" placeholder="Alfred" value="{{kyc.mobile}}">
+                                                    <input type="text" id="fName" placeholder="Alfred" value="{{user.phone_number}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="single-input">
-                                                    <label for="fName">Empresa</label>
-                                                    <input type="text" id="fName" placeholder="Alfred" value="{{kyc.company}}">
+                                                    <label for="fName">Genero</label>
+                                                    <input type="text" id="fName" placeholder="Alfred" value="{{kyc.gender|title}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="single-input">
+                                                    <label for="fName">Estado civil</label>
+                                                    <input type="text" id="fName" placeholder="Alfred" value="{{kyc.marrital_status|title}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -141,6 +123,12 @@
                                                 <div class="single-input">
                                                     <label for="fName">Ciudad</label>
                                                     <input type="text" id="fName" placeholder="Alfred" value="{{kyc.city|title}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-input">
+                                                    <label for="fName">Fecha de nacimiento</label>
+                                                    <input type="text" id="fName" placeholder="Alfred" value="{{kyc.date_of_birth|date}}">
                                                 </div>
                                             </div>
                                             <!-- <div class="col-md-6">

@@ -4,6 +4,8 @@ from account.models import Account
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+from userauths.models import User
+
 
 @login_required
 def transaction_lists(request):
@@ -27,11 +29,13 @@ def transaction_lists(request):
 @login_required
 def transaction_detail(request, transaction_id):
     transaction = Transaction.objects.get(transaction_id = transaction_id)
+    user = request.user
     
     #account = Account.objects.get()
     
     context = {
         "transaction": transaction,
+        "user": user
     }
     
     return render(request, "transaction/transaction-detail.html", context)

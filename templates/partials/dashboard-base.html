@@ -148,7 +148,7 @@
                                         </div>
                                         <div class="profile-head">
                                             <a href="{% url 'account:account' %}">
-                                                <h6>{{ kyc.full_name }}</h6>
+                                                <h6>{{ user.username }}</h6>
                                             </a>
                                             <p class="wallet-id"><small>No. de cuenta: {{request.user.account.account_number}}</small></p>
                                             <p class="wallet-id"><small>Pin: {{ request.user.account.pin_number}}</small></p>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django_extensions',
     
     # Custom apps
     'core',
@@ -56,6 +57,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'account.middleware.CustomErrorMiddleware',
+    'core.middleware.CustomErrorMiddleware',
+    'userauths.middleware.CustomErrorMiddleware'
 ]
 
 ROOT_URLCONF = 'fortibank.urls'

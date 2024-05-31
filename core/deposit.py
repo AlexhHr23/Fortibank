@@ -1,15 +1,16 @@
+import io
+import textwrap
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from account.models import KYC
-from .models import Evidence, Account, EvidenceWithPersons
-
+from core.forms import EvidenceWithPersonsForm
+from .models import Evidence, Account, EvidenceWithPersons, Ticket
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
 from account.models import KYC
-from .forms import EvidenceWithPersonsForm
 
 @login_required
 def upload_evidence_persons(request):
@@ -51,4 +52,3 @@ def upload_evidence_persons(request):
 @login_required
 def completed_persons_evidence(request):
     return render(request, 'deposit/completed-evidence-persons.html')
-    

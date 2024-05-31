@@ -21,7 +21,6 @@
                         <form method="POST">
                             {% csrf_token %}
                             <div class="alert-danger alert">
-                                <!-- More robust error viewer -->
 
                                 {% if form.errors %}
                                     {% for field in form %}
@@ -31,10 +30,10 @@
                                     {% endfor %}
                                 {% endif %}
 
-                                <!-- Less robust error viewer -->
                                 <!-- {% if form.errors %}
                                     <p> {{ form.errors }} </p>
                                 {% endif %} -->
+
                             </div>
                             <div class="row">
                                 <div class="col-12">
@@ -43,8 +42,8 @@
                                         {{form.username}}
                                     </div>
                                     <div class="single-input">
-                                        <label for="">Correo</label>
-                                        {{form.email}}
+                                        <label for="">Número de telefono</label>
+                                        {{form.phone_number}}
                                     </div>
                                     <div class="single-input">
                                         <label for="">Contraseña</label>

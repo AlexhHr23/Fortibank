@@ -1,3 +1,4 @@
+from os import name
 from django.shortcuts import render, redirect
 from userauths.forms import UserRegisterForm
 from django.contrib.auth import authenticate, login, logout
@@ -16,7 +17,7 @@ def RegisterView(request):
             #username = request.POST.get("username")
             messages.success(request, f"Hey {username} la cuenta fue creada correctamente.")
             #new_user = authenticate(username=form.cleand_data.get('email'))
-            new_user = authenticate(username=form.cleaned_data['email'], 
+            new_user = authenticate(phone_number=form.cleaned_data['phone_number'], 
                                     password=form.cleaned_data['password1'])
             login(request, new_user)
             return redirect("account:account")
@@ -35,12 +36,12 @@ def RegisterView(request):
 
 def LoginView(request): 
     if request.method == "POST":
-        email = request.POST.get("email")
+        phone_number = request.POST.get("phone_number")
         password = request.POST.get("password")
         
         try:
-            user = User.objects.get(email=email)
-            user = authenticate(request, email=email, password=password)
+            user = User.objects.get(phone_number=phone_number)
+            user = authenticate(request, phone_number=phone_number, password=password)
             
             if user is not None:
                 login(request, user)

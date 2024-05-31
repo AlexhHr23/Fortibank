@@ -20,7 +20,7 @@
                                 <img src="{% static 'assets1/images/icon/submitted-icon.png' %}" alt="icon">
                             </div>
                             <h3>¡Enviada!</h3>
-                            <p>La solicitud <b>{{ transaction.transaction_id }}</b> se envió a <b>{{ account.user.kyc.full_name }}</b></p>
+                            <p>La solicitud <b>{{ transaction.transaction_id }}</b> se envió a <b>{{ account.user.username}}</b></p>
                             <h5><a href="{% url 'account:dashboard' %}"><b>Terminar</b></a></h5> 
                         </div>
                     </div>

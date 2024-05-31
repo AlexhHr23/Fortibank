@@ -27,9 +27,9 @@
     
                                     </div>
                                     <div class="text-area">
-                                        <p>{{ account.user.kyc.full_name|title }}</p>
-                                        <span class="mdr"><b>{{ account.account_number }}</b></span> <br>
-                                        <span class="mdr">{{ account.user.email }}</span>
+                                        <p>{{ account.user.username|title }}</p>
+                                        <span class="mdr">No. de cuenta: <b>{{ account.account_number }}</b></span> <br>
+                                        <span class="mdr">Télefono: {{ account.user.phone_number }}</span>
                                     </div>
                                 </div>
                                 <div class="right">

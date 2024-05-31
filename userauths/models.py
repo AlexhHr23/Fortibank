@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
+    phone_number = models.CharField(max_length=100, unique=True)
     username = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
     is_staff = models.BooleanField(default=False)
     
     
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = ['username']
     
     

@@ -27,9 +27,9 @@
     
                                     </div>
                                     <div class="text-area">
-                                        <p>{{ account.user.kyc.full_name|title }}</p>
+                                        <p>{{ account.user.username|title }}</p>
                                         <span class="mdr"><b>{{ account.account_number }}</b></span> <br>
-                                        <span class="mdr">{{ account.user.email }}</span>
+                                        <span class="mdr">Télefono: {{ account.user.phone_number }}</span>
                                     </div>
                                 </div>
                                 <!-- <div class="right">
@@ -64,8 +64,8 @@
                                         <b>{{transaction.amount|floatformat:"0.2f"}} FP</b>
                                     </li>
                                     <li>
-                                        <span>Correo electrónico del destinatario</span>
-                                        <b>{{account.user.email}}</b>
+                                        <span>Télefono del destinatario</span>
+                                        <b>{{account.user.phone_number}}</b>
                                     </li>
                                     <!-- <li>
                                         <span>Fee</span>

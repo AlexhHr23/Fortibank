@@ -18,7 +18,7 @@
                         <div class="acc-details">
                             <div class="top-area">
                                 <div class="left-side">
-                                    <h5>{{ kyc.full_name|title }}</h5>
+                                    <h5>{{ user.username|title }}</h5>
                                     <h2>$FP {{ account.account_balance|floatformat:'0.2f'|intcomma }}</h2>
 
                                     {% for recent_recieved_transfer in recent_recieved_transfer %}
@@ -91,9 +91,9 @@
                                             <tbody>
                                                 
                                                 {% for s in sender_transaction %}
-                                                    <tr data-bs-toggle="modal" data-bs-target="#transactionsMod">
+                                                    <tr data-bs-toggle="modal" data-bs-target="#">
                                                         <th scope="row">
-                                                            <p>{{s.reciever.kyc.full_name|title}}</p>
+                                                            <p>{{s.reciever.username|title}}</p>
                                                             <p class="mdr">{{s.transaction_type|title}}</p>
                                                         </th>
                                                         <td>
@@ -143,9 +143,9 @@
                                             <tbody>
                                                 
                                                 {% for s in reciever_transaction %}
-                                                    <tr data-bs-toggle="modal" data-bs-target="#transactionsMod">
+                                                    <tr data-bs-toggle="modal" data-bs-target="#">
                                                         <th scope="row">
-                                                            <p>{{s.sender.kyc.full_name|title}}</p>
+                                                            <p>{{s.sender.username|title}}</p>
                                                             <p class="mdr">{{s.transaction_type|title}}</p>
                                                         </th>
                                                         <td>
@@ -194,9 +194,9 @@
                                             <tbody>
                                                 
                                                 {% for s in request_sender_transaction %}
-                                                    <tr data-bs-toggle="modal" data-bs-target="#transactionsMod">
+                                                    <tr data-bs-toggle="modal" data-bs-target="#">
                                                         <th scope="row">
-                                                            <p>{{s.reciever.kyc.full_name|title}}</p>
+                                                            <p>{{s.reciever.username|title}}</p>
                                                             <p class="mdr">{{s.transaction_type|title}}</p>
                                                         </th>
                                                         <td>
@@ -269,7 +269,7 @@
                                                 {% for s in request_reciever_transaction %}
                                                     <tr data-bs-toggle="modal" data-bs-target="#transactionsMod">
                                                         <th scope="row">
-                                                            <p>{{s.sender.kyc.full_name|title}}</p>
+                                                            <p>{{s.sender.username|title}}</p>
                                                             <p class="mdr">{{s.transaction_type|title}}</p>
                                                         </th>
                                                         <td>

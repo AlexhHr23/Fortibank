@@ -27,9 +27,9 @@
     
                                     </div>
                                     <div class="text-area">
-                                        <p>{{ account.user.kyc.full_name|title }}</p>
-                                        <span class="mdr"><b>{{ account.account_number }}</b></span> <br>
-                                        <span class="mdr">{{ account.user.email }}</span>
+                                        <p>{{ account.user.username|title }}</p>
+                                        <span class="mdr">No. de cuenta: <b>{{ account.account_number }}</b></span> <br>
+                                        <span class="mdr">Télefono: {{ account.user.phone_number }}</span>
                                     </div>
                                 </div>
                                 <div class="right">
@@ -56,27 +56,27 @@
                             <div class="col-xl-6">
                                 <ul class="details-list">
                                     <li>
-                                        <span>You Send</span>
+                                        <span>Enviaste</span>
                                         <b>{{transaction.amount|floatformat:"0.2f"}} FP</b>
                                     </li>
                                     <li>
-                                        <span>Recipient gets</span>
+                                        <span>El destinatario obtiene</span>
                                         <b>{{transaction.amount|floatformat:"0.2f"}} FP</b>
                                     </li>
                                     <li>
-                                        <span>E-mail of receiver</span>
-                                        <b>{{account.user.email}}</b>
+                                        <span>Télefono del destinatario</span>
+                                        <b>{{account.user.phone}}</b>
                                     </li>
                                     <li>
                                         <span>Fee</span>
                                         <b>Free</b>
                                     </li>
                                     <li>
-                                        <span>Description</span>
+                                        <span>Concepto</span>
                                         <b>{{transaction.description}}</b>
                                     </li>
                                     <li>
-                                        <span>Transfer was initiated on </span>
+                                        <span>Fecha y hora </span>
                                         <b>{{transaction.date}} </b>
                                     </li>
                                 </ul>

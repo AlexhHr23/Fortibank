@@ -9,7 +9,7 @@
             <div class="container-fruid">
                 <div class="main-content">
                     <div class="head-area d-flex align-items-center justify-content-between">
-                        <h4>Realizar un transferencia</h4>
+                        <h4>Realizar una transferencia</h4>
                         <div class="icon-area">
                             <!-- <img src="{% static 'assets1/images/icon/support-icon.png' %}" alt="icon"> -->
                         </div>
@@ -20,8 +20,12 @@
                                 <img src="{% static 'assets1/images/icon/submitted-icon.png' %}" alt="icon">
                             </div>
                             <h3>Enviada</h3>
-                            <p>Tu envidencia se ha validado correctamente</b></p>
-                            <!--<h5><a href=""><b>View Detail</b></a> | <a href=""><b>Request another Payment</b></a></h5> -->
+                            <p>Tu evidencia se ha validado correctamente</p>
+                            {% if ticket %}
+                                <h5><a href="{% url 'download_ticket' %}"><b>Descargar mi boleto</b></a></h5>
+                            {% else %}
+                                <p>No tienes un boleto validado para descargar.</p>
+                            {% endif %}
                             <h5><a href="{% url 'account:dashboard' %}"><b>Terminar</b></a></h5> 
                         </div>
                     </div>

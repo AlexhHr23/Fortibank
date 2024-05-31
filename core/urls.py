@@ -1,12 +1,12 @@
 from django.urls import path
 from core import deposit, lottery, views, transfer, transaction, payment_request, credit_card
 from core import transaction
+from userauths import views
 
 app_name = "core"
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    #path("", views.home, name="home")
+    path("", views.LoginView, name="index"),
     
     #Transfers
     path("search-account/", transfer.search_users_account_number, name="search-account"),
@@ -44,6 +44,7 @@ urlpatterns = [
      # Lottery URLS
      path("upload-evidence/", lottery.upload_evidence, name ="upload-evidence" ),
      path("evidence-completed/", lottery.evidence_completed, name="evidence-completed"),
+     path("download-ticket/", lottery.download_ticket, name="download-ticket"),
      
      # deposit urls
      path("upload-evidence-persons/", deposit.upload_evidence_persons, name ="upload-evidence-persons" ),

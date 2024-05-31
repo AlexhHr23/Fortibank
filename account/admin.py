@@ -11,8 +11,7 @@ class AccountAdminModel(ImportExportModelAdmin):
 
 class KYCAdmin(ImportExportModelAdmin):
     list_per_page = 25
-    search_fields = ["full_name"]
-    list_display = ['user', 'full_name'] 
+    list_display = ['user'] 
 
 
 admin.site.register(Account, AccountAdminModel)

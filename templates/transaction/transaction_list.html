@@ -60,7 +60,7 @@
                                                 {% for s in sender_transaction %}
                                                 <tr data-bs-toggle="modal" data-bs-target="#transactionsMod">
                                                     <th scope="row">
-                                                        <p>{{s.reciever.kyc.full_name|title}}</p>
+                                                        <p>{{s.reciever.username|title}}</p>
                                                         <p class="mdr">{{ s.transaction_type }}</p>
                                                     </th>
                                                     <td>
