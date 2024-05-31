@@ -1,8 +1,8 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% block content %}
-      <!-- Login Reg start -->
-      <section class="login-reg">
+    <!-- Login Reg start -->
+    <section class="login-reg">
         <div class="overlay pt-120">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
@@ -14,44 +14,41 @@
                     <div class="col-xl-5">
                         <div class="section-text text-center">
                             <h5 class="sub-title">Cuenta</h5>
-                            <h2 class="title">Bienvenido a Fortia</h2>
+                            <h2 class="title">Bienvenido a Forti Bank</h2>
                             <p class="dont-acc">¿Ya tienes cuenta? <a href="{% url 'userauths:sign-in' %}">Inicia sesión</a></p>
-                            
                         </div>
+                        
+                        <!-- Bloque de mensajes de alerta -->
+                        {% if messages %}
+                            <div class="alert alert-dismissible">
+                                {% for message in messages %}
+                                    {% if message.tags == 'error' %}
+                                        <div class="alert-danger alert">{{ message }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        
                         <form method="POST">
                             {% csrf_token %}
-                            <div class="alert-danger alert">
-
-                                {% if form.errors %}
-                                    {% for field in form %}
-                                        {% for error in field.errors %}
-                                            <p> {{ error }} </p>
-                                        {% endfor %}
-                                    {% endfor %}
-                                {% endif %}
-
-                                <!-- {% if form.errors %}
-                                    <p> {{ form.errors }} </p>
-                                {% endif %} -->
-
-                            </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="single-input">
                                         <label for="">Nombre de usuario</label>
-                                        {{form.username}}
+                                        {{ form.username }}
                                     </div>
                                     <div class="single-input">
                                         <label for="">Número de telefono</label>
-                                        {{form.phone_number}}
+                                        {{ form.phone_number }}
                                     </div>
                                     <div class="single-input">
                                         <label for="">Contraseña</label>
-                                        {{form.password1}}
+                                        {{ form.password1 }}
+                                        <p style="opacity: 0.7;">La contraseña debe contener 8 dígitos incluyendo números y letras</p>
                                     </div>
                                     <div class="single-input">
                                         <label for="">Confirmar contraseña</label>
-                                        {{form.password2}}
+                                        {{ form.password2 }}
                                     </div>
                                     <button class="cmn-btn w-100" type="submit">Registrar</button>
                                 </div>
