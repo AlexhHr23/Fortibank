@@ -31,7 +31,11 @@
                             <div id="image-preview" class="d-none">
                               <img id="preview" width="200" height="200" style="margin-top: 10px;">
                             </div>
-                            <button type="submit">Subir evidencia</button>
+                            <!-- Botón estilizado -->
+                            <button type="submit" class="custom-upload-button">
+                              <i class="fas fa-upload"></i>
+                              Subir evidencia
+                            </button>
                           </form>
                         </div>
                       </div>
@@ -46,6 +50,7 @@
     </div>
   </div>
 </section>
+
 <script>
   function previewImage(event) {
     var imageFile = event.target.files[0];
@@ -67,5 +72,33 @@
     reader.readAsDataURL(imageFile);
   }
 </script>
+
+<style>
+  .custom-upload-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0093E9;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .custom-upload-button:hover {
+    background-color: #007bb8;
+  }
+
+  .custom-upload-button i {
+    margin-right: 10px;
+  }
+</style>
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 {% endblock content %}
