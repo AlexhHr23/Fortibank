@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'fortibank.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fortibank',
         'USER':'alex',
         'PASSWORD': 'Hercules232415',
