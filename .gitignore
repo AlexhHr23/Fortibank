@@ -117,7 +117,7 @@ venv.bak/
 *.tmPreferences.cache 
 *.stTheme.cache 
 *.sublime-workspace 
-*.sublime-project 
+*.sublime-project
 
 # sftp configuration file 
 sftp-config.json 
