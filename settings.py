@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-289g*jy(iu#j$fn_4zy%bmj@d*_z_ou)+!j525!i=4e5ed0f)d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =False
 
-ALLOWED_HOSTS = ['185.164.111.40', 'forti-bank.com', 'www.forti-bank.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -86,21 +86,10 @@ WSGI_APPLICATION = 'fortibank.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fortibank',
-        'USER':'alex',
-        'PASSWORD': 'Hercules232415',
-        'PORT': '5432',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
