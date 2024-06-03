@@ -1,0 +1,46 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+    transition: opacity 0.3s ease; /* Efecto de transición */
+    opacity: 0; /* Inicialmente invisible */
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Centrado verticalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 700px; /* Ancho fijo */
+    height: 700px; /* Altura fija */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para el efecto */
+    transition: transform 0.3s ease; /* Efecto de transición */
+    transform: scale(0.7); /* Inicialmente reducido */
+}
+.modal.show {
+    opacity: 1; /* Mostrar modal */
+    transform: scale(1); /* Aumentar tamaño */
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 20px; /* Tamaño de fuente más pequeño */
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#evidenceImage {
+    width: 100%;
+    height: auto;
+    max-height: 700px; /* Altura máxima de la imagen */
+    object-fit: contain; /* Ajusta la imagen para que quepa en el modal */
+}
