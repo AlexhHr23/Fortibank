@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-289g*jy(iu#j$fn_4zy%bmj@d*_z_ou)+!j525!i=4e5ed0f)d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=False
+DEBUG=True
 
 ALLOWED_HOSTS = ['185.164.111.40', 'forti-bank.com', 'www.forti-bank.com']
 
@@ -145,8 +145,13 @@ LOGIN_URL = "userauths:sign-in"
 LOGOUT_REDIRECT_URL = "userauths:sign-in"
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
