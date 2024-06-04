@@ -30,13 +30,10 @@ DEBUG=True
 
 ALLOWED_HOSTS = ['185.164.111.40','forti-bank.com','www.forti-bank.com']
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://forti-bank.com',
-]
-
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = ['https://forti-bank.com']
+#CSRF_COOKIE_SECURE = True
+#SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
 
 
 # Application definition
