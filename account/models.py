@@ -49,7 +49,7 @@ class Account(models.Model):
     account_id = ShortUUIDField(unique=True, length=7, max_length=25, prefix="DEX", alphabet="1234567890") #12345567678789
     pin_number = ShortUUIDField(unique=True, length=4, max_length=7, alphabet="1234567890") # 2743
     red_code = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefgh1234567890") # 2743unique=TRUE,
-    account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="in-active")
+    account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="active")
     date = models.DateTimeField(auto_now_add=True)
     kyc_submitted = models.BooleanField(default=False)
     kyc_confirmed = models.BooleanField(default=False)
