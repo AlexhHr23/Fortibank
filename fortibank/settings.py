@@ -26,7 +26,17 @@ SECRET_KEY = 'django-insecure-289g*jy(iu#j$fn_4zy%bmj@d*_z_ou)+!j525!i=4e5ed0f)d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG=True
 
+
+
 ALLOWED_HOSTS = ['185.164.111.40','forti-bank.com','www.forti-bank.com']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://forti-bank.com',
+]
+
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
 
 
 # Application definition
