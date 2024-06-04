@@ -34,18 +34,18 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="single-input">
-                                        <label for="username">Nombre de usuario</label>
-                                        <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+                                        <label for="username">Nombre Completo</label>
+                                        <input type="text" id="username" name="username" placeholder="Nombre Completo" required>
                                     </div>
                                     <div class="single-input">
                                         <label for="phone_number">Número de telefono</label>
-                                        <input type="text" id="phone_number" name="phone_number" placeholder="Teléfono" required>
+                                        <input type="text" id="phone_number" name="phone_number" placeholder="Teléfono" required minlength="10" maxlength="10">
                                         <p id="phoneError" style="color: red; display: none;">Por favor ingrese solo números.</p>
                                     </div>
                                     <div class="single-input">
                                         <label for="password1">Contraseña</label>
-                                        <input type="password" id="password1" name="password1" placeholder="Contraseña" required>
-                                        <p style="opacity: 0.7;">La contraseña debe contener 8 dígitos incluyendo números y letras</p>
+                                        <input type="password" id="password1" name="password1" placeholder="Contraseña" required >
+                                        <p style="opacity: 0.7;">La contraseña debe contener 8 caracteres incluyendo números y letras</p>
                                     </div>
                                     <div class="single-input">
                                         <label for="password2">Confirmar contraseña</label>
