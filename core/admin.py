@@ -15,17 +15,17 @@ from decimal import Decimal
 
 class TransactionAdmin(admin.ModelAdmin):
     list_per_page = 25
-    list_editable  = ['amount', 'status','transaction_type','reciever', 'sender']
-    list_display  = ['user', 'amount', 'status','transaction_type','reciever', 'sender']
-    
-class CredritCardAdmin(admin.ModelAdmin):
+    list_editable  = ['amount', 'status', 'transaction_type', 'reciever', 'sender']
+    list_display  = ['user', 'amount', 'status', 'transaction_type', 'reciever', 'sender']
+
+class CreditCardAdmin(admin.ModelAdmin):
     list_per_page = 25
-    list_editable  = ['amount', 'card_type', ]
+    list_editable  = ['amount', 'card_type']
     list_display  = ['user', 'amount', 'card_type']
-  
+
 class EvidenceAdmin(admin.ModelAdmin):
     list_per_page = 25
-    list_display = ('user', 'view_evidence','reviewed', 'validated', 'upload_date', )
+    list_display = ('user', 'view_evidence', 'reviewed', 'validated', 'upload_date')
     list_filter = ('reviewed', 'validated')
     actions = ['validate_evidence', 'imprimir_boletos_validados']
 
@@ -36,7 +36,6 @@ class EvidenceAdmin(admin.ModelAdmin):
         )
     view_evidence.short_description = "Ver Evidencia"
 
-
     def validate_evidence(self, request, queryset):
         tickets = []
         for evidence in queryset:
@@ -44,7 +43,6 @@ class EvidenceAdmin(admin.ModelAdmin):
                 evidence.reviewed = True
                 evidence.validated = True
                 evidence.save()
-                # Verificar si ya existe un ticket para esta evidencia
                 try:
                     ticket = Ticket.objects.get(evidence=evidence)
                 except ObjectDoesNotExist:
@@ -91,8 +89,6 @@ class EvidenceAdmin(admin.ModelAdmin):
     def generate_ticket_number(self):
         return str(random.randint(1000, 9999))
 
-
-
     def generar_boletos_pdf(self, boletos):
         if not boletos:
             return None
@@ -105,25 +101,20 @@ class EvidenceAdmin(admin.ModelAdmin):
         boleto_height = 3.9 * inch  
         margin = 0.5 * inch
 
-        # Definir el número de columnas
         num_columns = 3
+        num_rows = 2
         column_width = (width - 2 * margin) / num_columns
-        column_height = boleto_height + margin
-
-        x = margin
-        y = height - boleto_height - margin
+        row_height = boleto_height + margin
 
         for i, boleto in enumerate(boletos):
             col = i % num_columns
-            row = i // num_columns
+            row = (i // num_columns) % num_rows
 
-            # Calcular la posición x e y para cada boleto
             x = margin + col * column_width
-            y = height - (row + 1) * column_height - margin
+            y = height - (row + 1) * row_height - margin
 
-            if y < margin:
+            if i > 0 and col == 0 and row == 0:
                 c.showPage()
-                y = height - column_height - margin
 
             c.setLineWidth(1)
             c.rect(x, y, boleto_width, boleto_height)
@@ -139,39 +130,33 @@ class EvidenceAdmin(admin.ModelAdmin):
             text_x = x + 0.1 * inch 
             text_y = y + 0.65 * inch  
 
-            # Obtener el nombre de usuario y el nombre de la empresa del modelo KYC
             username = boleto.user.username
             try:
                 company_name = boleto.user.kyc.company
             except KYC.DoesNotExist:
                 company_name = "Empresa no disponible"
 
-            # Dividir el nombre de usuario y el nombre de la empresa en líneas si es necesario
             max_text_width = boleto_width - 0.2 * inch  
-            lines_username = textwrap.wrap(username, width=30) 
+            lines_username = textwrap.wrap(username, width=30)
             lines_company_name = textwrap.wrap(f"Empresa: {company_name}", width=30)
 
-            # Imprimir el nombre de usuario
             for line in lines_username:
-                if text_y < y + 0.1 * inch:  
+                if text_y < y + 0.1 * inch:
                     break
                 c.drawString(text_x, text_y, line)
-                text_y -= 0.15 * inch  
+                text_y -= 0.15 * inch
 
-            # Asegurar que haya espacio entre el nombre de usuario y la empresa
             if text_y < y + 0.1 * inch:
                 text_y = y + 0.2 * inch
 
             text_y -= 0.1 * inch
 
-            # Imprimir el nombre de la empresa
             for line in lines_company_name:
-                if text_y < y + 0.1 * inch:  
+                if text_y < y + 0.1 * inch:
                     break
                 c.drawString(text_x, text_y, line)
-                text_y -= 0.15 * inch  
+                text_y -= 0.15 * inch
 
-            # Asegurar que el número del boleto esté siempre visible
             if text_y < y + 0.1 * inch:
                 text_y = y + 0.1 * inch
 
@@ -181,9 +166,7 @@ class EvidenceAdmin(admin.ModelAdmin):
         buffer.seek(0)
         return buffer
 
-
 class Save(admin.SimpleListFilter):
-    list_per_page = 25
     title = 'Saved'
     parameter_name = 'deposit_filter'
 
@@ -199,12 +182,11 @@ class Save(admin.SimpleListFilter):
         elif self.value() == 'le_zero':
             return queryset.filter(deposit__lte=Decimal('0.00'))
         return queryset
-    
 
 class EvidenceWithPersonsAdmin(admin.ModelAdmin):
     list_per_page = 25
     list_display = ['user', 'view_evidence', 'deposit', 'validated', 'upload_date']
-    list_filter = ['validated', Save]  # Agregar el filtro personalizado
+    list_filter = ['validated', Save]
     list_editable = ['deposit']
     actions = ['Validar_Depositar']
     fields = ['user', 'photo', 'deposit', 'validated']
@@ -224,7 +206,6 @@ class EvidenceWithPersonsAdmin(admin.ModelAdmin):
                 evidence.validated = True
                 evidence.save()
 
-                # Agregar dinero a la cuenta del usuario asociado a la evidencia
                 account = Account.objects.get(user=evidence.user)
                 account.account_balance += deposit_amount
                 account.save()
@@ -234,9 +215,19 @@ class EvidenceWithPersonsAdmin(admin.ModelAdmin):
             self.message_user(request, f'{updated} evidencias validadas y saldo actualizado.')
         else:
             self.message_user(request, 'No se actualizaron evidencias ya que todas estaban validadas.')
-            
-            
-admin.site.register(Transaction, TransactionAdmin)
-admin.site.register(CreditCard, CredritCardAdmin)
-admin.site.register(Evidence, EvidenceAdmin)
-admin.site.register(EvidenceWithPersons, EvidenceWithPersonsAdmin)
+
+# Registrar los modelos en el sitio admin solo si no están ya registrados
+from django.contrib.admin.sites import AlreadyRegistered
+
+models_and_admins = [
+    (Transaction, TransactionAdmin),
+    (CreditCard, CreditCardAdmin),
+    (Evidence, EvidenceAdmin),
+    (EvidenceWithPersons, EvidenceWithPersonsAdmin)
+]
+
+for model, model_admin in models_and_admins:
+    try:
+        admin.site.register(model, model_admin)
+    except AlreadyRegistered:
+        pass
