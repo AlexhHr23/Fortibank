@@ -1,5 +1,5 @@
 from django.urls import path
-from core import deposit, lottery, views, transfer, transaction, payment_request, credit_card
+from core import deposit, lottery, views, transfer, transaction, payment_request, credit_card, casino  
 from core import transaction
 from userauths import views
 
@@ -50,4 +50,6 @@ urlpatterns = [
      path("upload-evidence-persons/", deposit.upload_evidence_persons, name ="upload-evidence-persons" ),
      path("completed-evidence-persons/", deposit.completed_persons_evidence, name="completed-evidence-persons"),
      
+     # Casino
+     path("casino/", casino.casino_view, name="casino"),
 ]

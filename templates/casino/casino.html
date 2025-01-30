@@ -1,0 +1,172 @@
+{% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<head>
+  <style>
+    .container {
+        margin-top: 100px;
+        color: black;
+    }
+
+    .leaderboard-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .leaderboard {
+      width: 320px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(247, 247, 247, 0.2);
+      text-align: center;
+      background: #1a1a1a;
+    }
+
+    .player {
+      background: #222;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .player:hover {
+      background-color: #444;
+      transform: scale(1.05);
+    }
+
+    .badge {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .player-info {
+      text-align: left;
+      flex-grow: 1;
+    }
+
+    .name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      display: block;
+    }
+
+    .points {
+      font-size: 1rem;
+      color: #f7f6f6;
+    }
+
+    .first-place {
+      background: #f1c40f;
+      animation: pulse 1s infinite;
+      color: black;
+    }
+
+    .second-place {
+      background: #B0B0B0;
+      color: white;
+    }
+
+    .third-place {
+      background: #cd7f32;
+      color: white;
+    }
+
+    .fourth-place {
+      background: #3498db;
+      color: white;
+    }
+
+    .fifth-place {
+      background: #2ecc71;
+      color: white;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<div class="container">
+  <h2 class="text-center" style="color: black;">🏆 Top de Jugadores 🏆</h2>
+  <div class="leaderboard-container">
+    <div class="leaderboard">
+      {% for user in top_users %}
+        <div class="player 
+          {% if forloop.counter == 1 %}first-place
+          {% elif forloop.counter == 2 %}second-place
+          {% elif forloop.counter == 3 %}third-place
+          {% elif forloop.counter == 4 %}fourth-place
+          {% elif forloop.counter == 5 %}fifth-place
+          {% endif %}">
+          
+          <div class="badge">
+            {% if forloop.counter == 1 %}
+              🏆
+            {% elif forloop.counter == 2 %}
+              🥈
+            {% elif forloop.counter == 3 %}
+              🥉
+            {% elif forloop.counter == 4 %}
+              4️⃣
+            {% elif forloop.counter == 5 %}
+              5️⃣
+            {% else %}
+              {{ forloop.counter|add:"️⃣" }}
+            {% endif %}
+          </div>
+
+          <div class="player-info">
+            <span class="name">{{ user.user.username }}</span>
+            <span class="points">{{ user.account_balance|floatformat:0 }} pts</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1"></script>
+<script>
+  function lanzarConfeti() {
+    var duration = 5 * 1000; 
+    var animationEnd = Date.now() + duration;
+    
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    (function frame() {
+      var timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) {
+        return;
+      }
+
+      confetti({
+        particleCount: 5,
+        startVelocity: 30,
+        spread: 360,
+        origin: { x: Math.random(), y: Math.random() - 0.2 },
+        colors: ["#f1c40f", "#e74c3c", "#3498db", "#9b59b6", "#2ecc71"], 
+      });
+
+      requestAnimationFrame(frame);
+    })();
+  }
+
+ 
+  window.onload = lanzarConfeti;
+</script>
+
+{% endblock content %}
